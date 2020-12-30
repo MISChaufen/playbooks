@@ -1,0 +1,6 @@
+---
+# handlers file for shokinn.base_ubuntu_18_04_lts
+- name: reboot
+  become: yes
+  reboot:
+  when: stat_reboot_needed.stat.exists == True

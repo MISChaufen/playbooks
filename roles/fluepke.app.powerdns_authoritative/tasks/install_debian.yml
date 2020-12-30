@@ -1,0 +1,24 @@
+---
+
+- name: Ensure PowerDNS PGP key is known to apt
+  apt_key:
+    url: "{{ powerdns_authoritative__gpg_key }}"
+    id: "{{ powerdns_authoritative__gpg_key_id }}"
+    state: present
+
+- name: Ensure PowerDNS repository is configured
+  apt_repository:
+    repo: "{{ powerdns_authoritative__repo }}"
+    state: present
+
+- name: Configure apt preferences
+  template:
+    owner: root
+    group: root
+    src: pdns.j2
+    dest: /etc/apt/preferences.d/pdns
+
+- name: Update cache and install powerdns packages
+  apt:
+    update_cache: true
+    name: "{{ powerdns_authoritative__system_packages }}"

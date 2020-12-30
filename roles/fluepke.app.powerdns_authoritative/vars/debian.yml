@@ -1,0 +1,11 @@
+---
+
+powerdns_authoritative__repo: 'deb [arch=amd64] http://repo.powerdns.com/debian stretch-auth-42 main'
+powerdns_authoritative__system_packages:
+  - sqlite3
+  - pdns-server
+  - pdns-backend-pgsql
+  - pdns-backend-sqlite3
+powerdns_authoritative__gpg_key: 'https://repo.powerdns.com/FD380FBB-pub.asc'
+powerdns_authoritative__gpg_key_id: 9FAAA5577E8FCF62093D036C1B0C6205FD380FBB
+powerdns_authoritative__service_name: pdns

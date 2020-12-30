@@ -1,0 +1,17 @@
+---
+# defaults file for shokinn.base
+users:
+  - user: "user"
+    groups:
+      - sudo
+    update_password: on_create
+    password: ""
+    authorized_keys: ""
+    shell: "/bin/bash"
+  - user: "ansible"
+    groups:
+      - sudo
+    update_password: on_create
+    password: ""
+    authorized_keys: ""
+    shell: "/bin/bash"

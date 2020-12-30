@@ -1,0 +1,34 @@
+---
+
+- name: Ensure PowerDNS is restarted
+  service:
+    name: pdns
+    state: restarted
+
+- name: Configure DNS zones
+  powerdns_zone:
+    kind: Master
+    name: "{{ item.name }}"
+    state: "{{ item.state|default('present') }}"
+    pdns_api_url: "{{ powerdns_authoritative__api_url }}"
+    pdns_api_key: "{{ powerdns_authoritative__api_key }}"
+    server_id: 0
+  loop: "{{ powerdns_authoritative__zones }}"
+  loop_control: {label: "{{ item.name }}"}
+
+- name: Configure DNS RRSets
+  vars:
+    zone: "{{ item.0 }}"
+    rrset: "{{ item.1 }}"
+  powerdns_rrset:
+    name: "{{ rrset.name }}"
+    type: "{{ rrset.type }}"
+    ttl: "{{ rrset.ttl|default(86400) }}"
+    state: "{{ rrset.state|default('present') }}"
+    records: "{{ rrset.records }}"
+    zone: "{{ zone.name }}"
+    pdns_api_url: "{{ powerdns_authoritative__api_url }}"
+    pdns_api_key: "{{ powerdns_authoritative__api_key }}"
+    server_id: 0
+  loop: "{{ powerdns_authoritative__zones|subelements('rrsets') }}"
+  loop_control: {label: "{{ rrset.type }} {{ rrset.name }} {{ rrset.records }}"}

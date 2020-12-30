@@ -1,0 +1,55 @@
+---
+
+- name: Ensure group exists
+  group:
+    name: "{{ powerdns_authoritative__setgid }}"
+    state: present
+
+- name: Ensure user exists
+  user:
+    name: "{{ powerdns_authoritative__setuid }}"
+    group: "{{ powerdns_authoritative__setgid }}"
+    state: present
+
+- name: Configure postgresql
+  import_tasks: configure_postgresql.yml
+  when: "'gpgsql' in powerdns_authoritative__launch"
+
+- name: Configure sqlite3
+  import_tasks: configure_sqlite3.yml
+  when: "'gsqlite3' in powerdns_authoritative__launch"
+
+- name: Place pdns.conf
+  template:
+    owner: root
+    group: root
+    mode: 0640
+    src: pdns.conf.j2
+    dest: "{{ powerdns_authoritative__config_dir }}/pdns.conf"
+  notify: restart powerdns
+
+- name: "Ensure {{ powerdns_authoritative__config_dir }}/conf.d/ exists"
+  file:
+    owner: root
+    group: root
+    mode: 0750
+    path: "{{ powerdns_authoritative__config_dir }}/conf.d"
+    state: directory
+
+- name: Configure the generic PostgreSQL backend
+  template:
+    owner: root
+    group: root
+    mode: 0640
+    src: gpgsql.conf.j2
+    dest: "{{ powerdns_authoritative__config_dir }}/conf.d/gpgsql.conf"
+  when: "'gpgsql' in powerdns_authoritative__launch"
+  notify: restart powerdns
+
+- name: Configure the generic SQLite3
+  template:
+    owner: root
+    group: root
+    src: gsqlite3.conf.j2
+    dest: "{{ powerdns_authoritative__config_dir }}/conf.d/gsqlite3.conf"
+  when: "'gsqlite3' in powerdns_authoritative__launch"

@@ -1,0 +1,6 @@
+---
+# handlers file for shokinn.base_rpi
+- name: reboot
+  become: yes
+  reboot:
+  when: stat_reboot_needed.stat.exists == True

@@ -1,0 +1,31 @@
+---
+
+- name: Delete sqlite3 db
+  file:
+    path: "{{ powerdns_authoritative__gsqlite_database }}"
+    state: absent
+  when: powerdns_authoritative__regenerate_sqlite3
+
+- name: Place schema_sqlite3.sql
+  copy:
+    src: schema_sqlite3.sql
+    dest: "{{ powerdns_authoritative__config_dir }}/schema_sqlite3.sql"
+
+- name: Enssure sqlite3 db dir exists
+  file:
+    owner: "{{ powerdns_authoritative__setuid }}"
+    group: "{{ powerdns_authoritative__setgid }}"
+    path: "{{ powerdns_authoritative__gsqlite_database|dirname }}"
+
+- name: Ensure sqlite3 database exists
+  shell: "sqlite3 {{ powerdns_authoritative__gsqlite_database }} < {{ powerdns_authoritative__config_dir }}/schema_sqlite3.sql"
+  args:
+    creates: "{{ powerdns_authoritative__gsqlite_database }}"
+  notify: restart powerdns
+
+- name: Set permissions on database
+  file:
+    owner: "{{ powerdns_authoritative__setuid }}"
+    group: "{{ powerdns_authoritative__setgid }}"
+    mode: 0640
+    path: "{{ powerdns_authoritative__gsqlite_database }}"

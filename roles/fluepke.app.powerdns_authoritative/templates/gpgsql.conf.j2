@@ -1,0 +1,8 @@
+{{ ansible_managed|comment(decoration="# ") }}
+
+gpgsql-host={{ powerdns_authoritative__gpgsql_host }}
+gpgsql-port={{ powerdns_authoritative__gpgsql_port }}
+gpgsql-dbname={{ powerdns_authoritative__gpgsql_dbname }}
+gpgsql-user={{ powerdns_authoritative__gpgsql_user }}
+gpgsql-password={{ powerdns_authoritative__gpgsql_password }}
+gpgsql-dnssec={{ 'yes' if powerdns_authoritative__gpgsql_dnssec else 'no' }}

@@ -1,0 +1,26 @@
+---
+
+- name: Check os compatability with this role
+  assert:
+    that: "ansible_os_family|lower in powerdns_authoritative__supported_os_families"
+    msg: "{{ ansible_os_family }} is probably not supported by this role"
+  tags: [powerdns-authoritative]
+
+- name: Include os specific variables
+  include_vars: "{{ ansible_os_family|lower }}.yml"
+  tags: [powerdns-authoritative]
+
+- name: Install dependencies required by this role
+  import_tasks: install.yml
+  become: true
+  tags: [powerdns-authoritative]
+
+- name: Configure the PowerDNS authoritative server
+  import_tasks: configure.yml
+  become: true
+  tags: [powerdns-authoritative]
+
+- name: Configure zones
+  import_tasks: zones.yml
+  become: true
+  tags: [powerdns-authoritative,zones]

@@ -1,0 +1,157 @@
+---
+
+powerdns_authoritative__supported_os_families: [debian]
+powerdns_authoritative__system_packages: []
+powerdns_authoritative__pip_packages:
+  - requests
+  - python-powerdns
+
+powerdns_authoritative__setup_db: true
+
+powerdns_authoritative__zones: []
+# - name: example.com
+#   nameservers: [ns1.example.com, ns2.example.com]
+#   state: present  # defaults to present
+#   records:
+#     - name: '.'
+#       type: A
+#       content: 127.0.0.1
+#       state: present  # defaults to present
+
+# pdns.conf
+powerdns_authoritative__8bit_dns: false
+powerdns_authoritative__allow_axfr_ips: []
+powerdns_authoritative__allow_dnsupdate_from: []
+powerdns_authoritative__allow_notify_from: []
+powerdns_authoritative__allow_unsigned_notify: false
+powerdns_authoritative__allow_unsigned_supermaster: false
+powerdns_authoritative__also_notify: []
+powerdns_authoritative__any_to_tcp: true
+powerdns_authoritative__api: true
+powerdns_authoritative__api_key: changeme
+powerdns_authoritative__axfr_lower_serial: false
+powerdns_authoritative__cache_ttl: 60
+powerdns_authoritative__carbon_ourname: "{{ inventory_hostname }}"
+powerdns_authoritative__carbon_server: ''
+powerdns_authoritative__carbon_interval: 15
+powerdns_authoritative__chroot: false
+powerdns_authoritative__config_dir: /etc/powerdns
+powerdns_authoritative__config_name: default
+powerdns_authoritative__daemon: false
+powerdns_authoritative__default_ksk_algorithms: ecdsa256
+powerdns_authoritative__default_ksk_size: ''
+powerdns_authoritative__default_soa_name: "{{ inventory_hostname }}"
+powerdns_authoritative__default_soa_edit: EPOCH
+powerdns_authoritative__default_soa_edit_signed: EPOCH
+powerdns_authoritative__default_soa_mail: "hostmaster@{{ inventory_hostname }}"
+powerdns_authoritative__default_ttl: 3600
+powerdns_authoritative__default_zsk_algorithms: ecdsa256
+powerdns_authoritative__default_zsk_size: ''
+powerdns_authoritative__direct_dnskey: false
+powerdns_authoritative__disable_axfr: true
+powerdns_authoritative__disable_axfr_rectify: true
+powerdns_authoritative__disable_syslog: false
+powerdns_authoritative__distributor_threads: "{{ ansible_processor_vcpus }}"
+powerdns_authoritative__dname_processing: false
+powerdns_authoritative__dnssec_key_cache_ttl: 0
+powerdns_authoritative__dnsupdate: false
+powerdns_authoritative__do_ipv6_additional_processing: true
+powerdns_authoritative__domain_metadata_cache_ttl: 0
+powerdns_authoritative__edns_subnet_processing: false
+powerdns_authoritative__entropy_source: /dev/urandom
+powerdns_authoritative__expand_alias: false
+powerdns_authoritative__forward_dnsupdate: false
+powerdns_authoritative__forward_notify: []
+powerdns_authoritative__guardian: false
+powerdns_authoritative__include_dir: /etc/powerdns/conf.d/
+powerdns_authoritative__launch: [gsqlite3]
+powerdns_authoritative__load_modules: []
+powerdns_authoritative__local_address: [0.0.0.0]
+powerdns_authoritative__non_local_bind: false
+powerdns_authoritative__lua_axfr_script: ''
+powerdns_authoritative__local_address_nonexist_fail: true
+powerdns_authoritative__local_ipv6: ['::']
+powerdns_authoritative__local_ipv6_nonexist_fail: true
+powerdns_authoritative__local_port: 53
+powerdns_authoritative__log_dns_details: false
+powerdns_authoritative__logging_facility: 0
+powerdns_authoritative__loglevel: 4
+powerdns_authoritative__log_dns_queries: false
+powerdns_authoritative__master: false
+powerdns_authoritative__max_cache_entries: 1000000
+powerdns_authoritative__max_ent_entries: 100000
+powerdns_authoritative__max_nsec3_iterations: 1000
+powerdns_authoritative__max_packet_cache_entries: 1000000
+powerdns_authoritative__max_queue_length: 5000
+powerdns_authoritative__max_tcp_connection_duration: 10
+powerdns_authoritative__max_tcp_connections: 1000
+powerdns_authoritative__max_tcp_connections_per_client: 10
+powerdns_authoritative__max_tcp_transactions_per_conn: 100
+powerdns_authoritative__module_dir: ''
+powerdns_authoritative__negquery_cache_ttl: 0
+powerdns_authoritative__no_config: false
+powerdns_authoritative__no_shuffle: false
+powerdns_authoritative__overload_queue_length: 0
+powerdns_authoritative__reuseport: true
+powerdns_authoritative__security_poll_suffix: secpoll.powerdns.com.
+powerdns_authoritative__server_id: "{{ inventory_hostname }}"
+powerdns_authoritative__only_notify: []
+powerdns_authoritative__out_of_zone_additional_processing: false
+powerdns_authoritative__outgoing_axfr_expand_alias: false
+powerdns_authoritative__prevent_self_notification: true
+powerdns_authoritative__query_cache_ttl: 60
+powerdns_authoritative__query_local_address: 0.0.0.0
+powerdns_authoritative__query_local_address6: '::'
+powerdns_authoritative__query_logging: false
+powerdns_authoritative__queue_limit: 1500
+powerdns_authoritative__receiver_threads: "{{ ansible_processor_vcpus }}"
+powerdns_authoritative__resolver:
+  - 194.150.168.168  # AS250
+  - 212.82.226.212  # ClaraNet
+powerdns_authoritative__retrieval_threads: "{{ ansible_processor_vcpus }}"
+powerdns_authoritative__setgid: powerdns
+powerdns_authoritative__setuid: powerdns
+powerdns_authoritative__slave: false
+powerdns_authoritative__slave_cycle_interval: 60
+powerdns_authoritative__slave_renotify: false
+powerdns_authoritative__signing_threads: "{{ ansible_processor_vcpus }}"
+powerdns_authoritative__soa_expire_default: 604800
+powerdns_authoritative__soa_minimum_ttl: 3600
+powerdns_authoritative__soa_refresh_default: 10800
+powerdns_authoritative__soa_retry_default: 3600
+powerdns_authoritative__socket_dir: /var/run
+powerdns_authoritative__tcp_control_address: ''
+powerdns_authoritative__tcp_control_port: 53000
+powerdns_authoritative__tcp_control_range: []
+powerdns_authoritative__tcp_control_secret: changeme
+powerdns_authoritative__tcp_fast_open: 0
+powerdns_authoritative__tcp_idle_timeout: 10
+powerdns_authoritative__traceback_handler: false
+powerdns_authoritative__trusted_notification_proxy: ''
+powerdns_authoritative__udp_truncation_threshold: 1500
+powerdns_authoritative__version_string: anonymous
+powerdns_authoritative__webserver: true
+powerdns_authoritative__webserver_address: 127.0.0.1
+powerdns_authoritative__webserver_allow_from: [127.0.0.1, '::']
+powerdns_authoritative__webserver_password: changeme
+powerdns_authoritative__webserver_port: 8053
+powerdns_authoritative__webserver_print_arguments: false
+powerdns_authoritative__write_pid: false
+powerdns_authoritative__xfr_max_received_mbytes: 100
+
+powerdns_authoritative__api_url: "http://{{ powerdns_authoritative__webserver_address }}:{{ powerdns_authoritative__webserver_port }}/api/v1"
+
+# gpsql.conf (Generic PostgreSQL backend)
+powerdns_authoritative__gpgsql_host: localhost
+powerdns_authoritative__gpgsql_port: 5432
+powerdns_authoritative__gpgsql_dbname: powerdns
+powerdns_authoritative__gpgsql_user: powerdns
+powerdns_authoritative__gpgsql_password: changeme
+powerdns_authoritative__gpgsql_dnssec: true
+
+# gsqlite3.conf (Gneric SQLite3 backend)#
+powerdns_authoritative__gsqlite_database: /var/lib/powerdns/db.sqlite
+powerdns_authoritative__gsqlite_pragma_synchronous: 0
+powerdns_authoritative__gsqlite_pragma_foreign_keys: true
+powerdns_authoritative__gsqlite_dnssec: true
+powerdns_authoritative__regenerate_sqlite3: false

@@ -1,0 +1,8 @@
+---
+
+- name: restart powerdns
+  service:
+    name: "{{ powerdns_authoritative__service_name }}"
+    state: restarted
+  become: true
+

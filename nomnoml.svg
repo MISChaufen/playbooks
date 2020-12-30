@@ -1,0 +1,204 @@
+<svg version="1.1" baseProfile="full" width="2015" height="618.5" viewbox="0 0 2015 618.5" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" style="font-weight:bold; font-size:12pt; font-family:'Calibri', Helvetica, sans-serif;;stroke-width:3;stroke-linejoin:round;stroke-linecap:round">
+  <title >nomnoml</title>
+  <desc >#titel: nomnoml
+
+#direction: right
+#.play: visual=note
+#.dir: fill=#878787 stroke=#f2f2f2 dashed
+#.roleapp: fill=#eb4034
+#.rolesystem: fill=#c2c2c2
+
+[&lt;dir&gt; nerd_kino]
+[&lt;dir&gt; rclone_web_ui]
+[&lt;dir&gt; verlihub]
+
+[&lt;package&gt; nerd_kino/inventory|
+  - nerd-kino.de
+]
+[&lt;package&gt; rclone_web_ui/inventory|
+  - rclone.nerd-kino.de
+]
+[&lt;package&gt; verlihub/inventory|
+  - desert-combat.gsh-lan.net
+]
+
+[&lt;play&gt; nerd_kino/bootstrap.yml]
+[&lt;play&gt; nerd_kino/upgrade.yml]
+[&lt;play&gt; nerd_kino/plabook.yml]
+[&lt;play&gt; rclone_web_ui/bootstrap.yml]
+[&lt;play&gt; rclone_web_ui/upgrade.yml]
+[&lt;play&gt; rclone_web_ui/plabook.yml]
+[&lt;play&gt; verlihub/bootstrap.yml]
+[&lt;play&gt; verlihub/upgrade.yml]
+[&lt;play&gt; verlihub/plabook.yml]
+
+[&lt;rolesystem&gt; shokinn.system.ubuntu.base]
+[&lt;rolesystem&gt; shokinn.system.ubuntu.base.rpi]
+[&lt;rolesystem&gt; shokinn.system.ubuntu.base.x86_64_server]
+[&lt;rolesystem&gt; shokinn.system.dhparam]
+
+[shokinn.system.ubuntu.base.rpi]--&gt;[shokinn.system.ubuntu.base]
+[shokinn.system.ubuntu.base.x86_64_server]--&gt;[shokinn.system.ubuntu.base]
+[nginxinc.nginx]--&gt;[shokinn.system.dhparam]
+
+[&lt;roleapp&gt; shokinn.app.iptables]
+[&lt;roleapp&gt; shokinn.app.nginx.cert.helper]
+[&lt;roleapp&gt; nginxinc.nginx]
+[&lt;roleapp&gt; stefangweichinger.rclone]
+[&lt;roleapp&gt; geerlingguy.pip]
+[&lt;roleapp&gt; geerlingguy.certbot]
+
+[shokinn.app.nginx.cert.helper]--&gt;[geerlingguy.certbot]
+
+[verlihub/inventory]-[verlihub]
+[verlihub]-&gt;[verlihub/bootstrap.yml]
+[verlihub]-&gt;[verlihub/upgrade.yml]
+[verlihub/bootstrap.yml]-&gt;[verlihub/plabook.yml]
+[verlihub/upgrade.yml]-&gt;[verlihub/plabook.yml]
+[verlihub/plabook.yml]-&gt;[shokinn.system.ubuntu.base.rpi]
+[verlihub/plabook.yml]-&gt;[shokinn.app.iptables]
+
+[nerd_kino/inventory]-[nerd_kino]
+[nerd_kino]-&gt;[nerd_kino/bootstrap.yml]
+[nerd_kino]-&gt;[nerd_kino/upgrade.yml]
+[nerd_kino/bootstrap.yml]-&gt;[nerd_kino/plabook.yml]
+[nerd_kino/upgrade.yml]-&gt;[nerd_kino/plabook.yml]
+[nerd_kino/plabook.yml]-&gt;[shokinn.system.ubuntu.base.x86_64_server]
+[nerd_kino/plabook.yml]-&gt;[shokinn.app.iptables]
+
+[rclone_web_ui/inventory]-[rclone_web_ui]
+[rclone_web_ui]-&gt;[rclone_web_ui/bootstrap.yml]
+[rclone_web_ui]-&gt;[rclone_web_ui/upgrade.yml]
+[rclone_web_ui/bootstrap.yml]-&gt;[rclone_web_ui/plabook.yml]
+[rclone_web_ui/upgrade.yml]-&gt;[rclone_web_ui/plabook.yml]
+[rclone_web_ui/plabook.yml]-&gt;[shokinn.system.ubuntu.base.x86_64_server]
+[rclone_web_ui/plabook.yml]-&gt;[shokinn.app.iptables]
+[rclone_web_ui/plabook.yml]-&gt;[geerlingguy.pip]
+[rclone_web_ui/plabook.yml]-&gt;[shokinn.app.nginx.cert.helper]
+[rclone_web_ui/plabook.yml]-&gt;[nginxinc.nginx]
+[rclone_web_ui/plabook.yml]-&gt;[stefangweichinger.rclone]
+</desc>
+  <path d="M1557 40 L1624.5 40 L1767.9 80 L1767.9 80 " style="stroke:#33322E;fill:none;stroke-dasharray:6 6;"></path>
+  <path d="M1753.6 81.6 L1761.5 78.2 L1756.5 71.3 L1767.9 80 Z" style="stroke:#33322E;fill:#33322E;stroke-dasharray:none;"></path>
+  <path d="M1604.5 166.5 L1624.5 166.5 L1780.1 111 L1780.1 111 " style="stroke:#33322E;fill:none;stroke-dasharray:6 6;"></path>
+  <path d="M1769.3 120.5 L1773.8 113.2 L1765.7 110.5 L1780.1 111 Z" style="stroke:#33322E;fill:#33322E;stroke-dasharray:none;"></path>
+  <path d="M1433.5 519.5 L1624.5 519.5 L1711 519.5 L1711 519.5 " style="stroke:#33322E;fill:none;stroke-dasharray:6 6;"></path>
+  <path d="M1697.7 524.8 L1704.3 519.5 L1697.7 514.2 L1711 519.5 Z" style="stroke:#33322E;fill:#33322E;stroke-dasharray:none;"></path>
+  <path d="M1505 448.5 L1624.5 448.5 L1725 448.5 L1725 448.5 " style="stroke:#33322E;fill:none;stroke-dasharray:6 6;"></path>
+  <path d="M1711.7 453.8 L1718.3 448.5 L1711.7 443.2 L1725 448.5 Z" style="stroke:#33322E;fill:#33322E;stroke-dasharray:none;"></path>
+  <path d="M286.5 44.5 L306.5 44.5 L350.5 44.5 L350.5 44.5 " style="stroke:#33322E;fill:none;stroke-dasharray:none;"></path>
+  <path d="M442.5 42.2 L486.5 40 L530.5 40 L530.5 40 " style="stroke:#33322E;fill:none;stroke-dasharray:none;"></path>
+  <path d="M517.2 45.3 L523.8 40 L517.2 34.7 L530.5 40 Z" style="stroke:#33322E;fill:#33322E;stroke-dasharray:none;"></path>
+  <path d="M417.5 60 L486.5 111 L540 111 L540 111 " style="stroke:#33322E;fill:none;stroke-dasharray:none;"></path>
+  <path d="M526.7 116.3 L533.3 111 L526.7 105.7 L540 111 Z" style="stroke:#33322E;fill:#33322E;stroke-dasharray:none;"></path>
+  <path d="M755.5 40 L799.5 40 L843.5 41.3 L843.5 41.3 " style="stroke:#33322E;fill:none;stroke-dasharray:none;"></path>
+  <path d="M830 46.3 L836.8 41.1 L830.3 35.6 L843.5 41.3 Z" style="stroke:#33322E;fill:#33322E;stroke-dasharray:none;"></path>
+  <path d="M746 111 L799.5 111 L912.2 60 L912.2 60 " style="stroke:#33322E;fill:none;stroke-dasharray:none;"></path>
+  <path d="M902.3 70.4 L906.2 62.7 L897.9 60.6 L912.2 60 Z" style="stroke:#33322E;fill:#33322E;stroke-dasharray:none;"></path>
+  <path d="M1049.5 41.3 L1093.5 40 L1161 40 L1161 40 " style="stroke:#33322E;fill:none;stroke-dasharray:none;"></path>
+  <path d="M1147.7 45.3 L1154.3 40 L1147.7 34.7 L1161 40 Z" style="stroke:#33322E;fill:#33322E;stroke-dasharray:none;"></path>
+  <path d="M974.3 60 L1093.5 126.5 L1330 253 L1330 253 " style="stroke:#33322E;fill:none;stroke-dasharray:none;"></path>
+  <path d="M1315.7 251.4 L1324.1 249.9 L1320.8 242 L1330 253 Z" style="stroke:#33322E;fill:#33322E;stroke-dasharray:none;"></path>
+  <path d="M248.5 206.5 L306.5 206.5 L345.5 206.5 L345.5 206.5 " style="stroke:#33322E;fill:none;stroke-dasharray:none;"></path>
+  <path d="M447.5 192.6 L486.5 182 L525.5 182 L525.5 182 " style="stroke:#33322E;fill:none;stroke-dasharray:none;"></path>
+  <path d="M512.2 187.3 L518.8 182 L512.2 176.7 L525.5 182 Z" style="stroke:#33322E;fill:#33322E;stroke-dasharray:none;"></path>
+  <path d="M426.5 222 L486.5 253 L535 253 L535 253 " style="stroke:#33322E;fill:none;stroke-dasharray:none;"></path>
+  <path d="M521.7 258.3 L528.3 253 L521.7 247.7 L535 253 Z" style="stroke:#33322E;fill:#33322E;stroke-dasharray:none;"></path>
+  <path d="M760.5 182 L799.5 182 L853.5 191 L853.5 191 " style="stroke:#33322E;fill:none;stroke-dasharray:none;"></path>
+  <path d="M839.5 194.1 L846.9 189.9 L841.2 183.5 L853.5 191 Z" style="stroke:#33322E;fill:#33322E;stroke-dasharray:none;"></path>
+  <path d="M751 253 L799.5 253 L897.5 222 L897.5 222 " style="stroke:#33322E;fill:none;stroke-dasharray:none;"></path>
+  <path d="M886.4 231.1 L891.1 224 L883.2 220.9 L897.5 222 Z" style="stroke:#33322E;fill:#33322E;stroke-dasharray:none;"></path>
+  <path d="M1003.5 191 L1093.5 166.5 L1113.5 166.5 L1113.5 166.5 " style="stroke:#33322E;fill:none;stroke-dasharray:none;"></path>
+  <path d="M1100.2 171.8 L1106.8 166.5 L1100.2 161.2 L1113.5 166.5 Z" style="stroke:#33322E;fill:#33322E;stroke-dasharray:none;"></path>
+  <path d="M991.2 222 L1093.5 257.5 L1256 264.2 L1256 264.2 " style="stroke:#33322E;fill:none;stroke-dasharray:none;"></path>
+  <path d="M1242.5 269 L1249.3 264 L1242.9 258.4 L1256 264.2 Z" style="stroke:#33322E;fill:#33322E;stroke-dasharray:none;"></path>
+  <path d="M267.5 413 L306.5 413 L326.5 413 L326.5 413 " style="stroke:#33322E;fill:none;stroke-dasharray:none;"></path>
+  <path d="M412.2 397.5 L486.5 324 L506.5 324 L506.5 324 " style="stroke:#33322E;fill:none;stroke-dasharray:none;"></path>
+  <path d="M493.2 329.3 L499.8 324 L493.2 318.7 L506.5 324 Z" style="stroke:#33322E;fill:#33322E;stroke-dasharray:none;"></path>
+  <path d="M435.8 428.5 L486.5 448.5 L516 448.5 L516 448.5 " style="stroke:#33322E;fill:none;stroke-dasharray:none;"></path>
+  <path d="M502.7 453.8 L509.3 448.5 L502.7 443.2 L516 448.5 Z" style="stroke:#33322E;fill:#33322E;stroke-dasharray:none;"></path>
+  <path d="M779.5 324 L799.5 324 L920.9 397.5 L920.9 397.5 " style="stroke:#33322E;fill:none;stroke-dasharray:none;"></path>
+  <path d="M906.7 395.2 L915.2 394 L912.3 386 L920.9 397.5 Z" style="stroke:#33322E;fill:#33322E;stroke-dasharray:none;"></path>
+  <path d="M770 448.5 L799.5 448.5 L882.3 428.5 L882.3 428.5 " style="stroke:#33322E;fill:none;stroke-dasharray:none;"></path>
+  <path d="M870.6 436.8 L875.8 430.1 L868.1 426.4 L882.3 428.5 Z" style="stroke:#33322E;fill:#33322E;stroke-dasharray:none;"></path>
+  <path d="M966.2 397.5 L1093.5 297.5 L1327.6 182 L1327.6 182 " style="stroke:#33322E;fill:none;stroke-dasharray:none;"></path>
+  <path d="M1318 192.7 L1321.6 184.9 L1313.3 183.1 L1327.6 182 Z" style="stroke:#33322E;fill:#33322E;stroke-dasharray:none;"></path>
+  <path d="M976.7 397.5 L1093.5 337.5 L1299.4 284 L1299.4 284 " style="stroke:#33322E;fill:none;stroke-dasharray:none;"></path>
+  <path d="M1287.8 292.5 L1292.9 285.7 L1285.1 282.2 L1299.4 284 Z" style="stroke:#33322E;fill:#33322E;stroke-dasharray:none;"></path>
+  <path d="M1010.7 397.5 L1093.5 377.5 L1279.5 377.5 L1279.5 377.5 " style="stroke:#33322E;fill:none;stroke-dasharray:none;"></path>
+  <path d="M1266.2 382.8 L1272.8 377.5 L1266.2 372.2 L1279.5 377.5 Z" style="stroke:#33322E;fill:#33322E;stroke-dasharray:none;"></path>
+  <path d="M1010.7 428.5 L1093.5 448.5 L1213 448.5 L1213 448.5 " style="stroke:#33322E;fill:none;stroke-dasharray:none;"></path>
+  <path d="M1199.7 453.8 L1206.3 448.5 L1199.7 443.2 L1213 448.5 Z" style="stroke:#33322E;fill:#33322E;stroke-dasharray:none;"></path>
+  <path d="M967.9 428.5 L1093.5 519.5 L1284.5 519.5 L1284.5 519.5 " style="stroke:#33322E;fill:none;stroke-dasharray:none;"></path>
+  <path d="M1271.2 524.8 L1277.8 519.5 L1271.2 514.2 L1284.5 519.5 Z" style="stroke:#33322E;fill:#33322E;stroke-dasharray:none;"></path>
+  <path d="M959.3 428.5 L1093.5 590.5 L1237 590.5 L1237 590.5 " style="stroke:#33322E;fill:none;stroke-dasharray:none;"></path>
+  <path d="M1223.7 595.8 L1230.3 590.5 L1223.7 585.2 L1237 590.5 Z" style="stroke:#33322E;fill:#33322E;stroke-dasharray:none;"></path>
+  <rect x="51.5" y="206.5" height="31" width="197" style="stroke:#33322E;fill:#eee8d5;stroke-dasharray:none;"></rect>
+  <path d="M51.5 206.5 L51.5 175.5 L248 175.5 L248 206.5 Z" style="stroke:#33322E;fill:#eee8d5;stroke-dasharray:none;"></path>
+  <text x="59.5" y="197" style="font-weight:normal;">nerd_kino/inventory</text>
+  <path d="M51.5 206.5 L248.5 206.5" style="stroke:#33322E;fill:none;stroke-dasharray:none;"></path>
+  <text x="59.5" y="228" style="font-weight:normal;">- nerd-kino.de</text>
+  <rect x="32.5" y="413.5" height="31" width="235" style="stroke:#33322E;fill:#eee8d5;stroke-dasharray:none;"></rect>
+  <path d="M32.5 413.5 L32.5 382.5 L267 382.5 L267 413.5 Z" style="stroke:#33322E;fill:#eee8d5;stroke-dasharray:none;"></path>
+  <text x="40.5" y="404" style="font-weight:normal;">rclone_web_ui/inventory</text>
+  <path d="M32.5 413.5 L267.5 413.5" style="stroke:#33322E;fill:none;stroke-dasharray:none;"></path>
+  <text x="40.5" y="435" style="font-weight:normal;">- rclone.nerd-kino.de</text>
+  <rect x="13.5" y="44.5" height="31" width="273" style="stroke:#33322E;fill:#eee8d5;stroke-dasharray:none;"></rect>
+  <path d="M13.5 44.5 L13.5 13.5 L200.5 13.5 L200.5 44.5 Z" style="stroke:#33322E;fill:#eee8d5;stroke-dasharray:none;"></path>
+  <text x="21.5" y="35" style="font-weight:normal;">verlihub/inventory</text>
+  <path d="M13.5 44.5 L286.5 44.5" style="stroke:#33322E;fill:none;stroke-dasharray:none;"></path>
+  <text x="21.5" y="66" style="font-weight:normal;">- desert-combat.gsh-lan.net</text>
+  <rect x="345.5" y="191.5" height="31" width="102" style="stroke:#f2f2f2;fill:#878787;stroke-dasharray:6 6;"></rect>
+  <text x="396.5" y="213" style="font-weight:normal;text-anchor: middle;">nerd_kino</text>
+  <rect x="326.5" y="397.5" height="31" width="140" style="stroke:#f2f2f2;fill:#878787;stroke-dasharray:6 6;"></rect>
+  <text x="396.5" y="419" style="font-weight:normal;text-anchor: middle;">rclone_web_ui</text>
+  <rect x="350.5" y="29.5" height="31" width="92" style="stroke:#f2f2f2;fill:#878787;stroke-dasharray:6 6;"></rect>
+  <text x="396.5" y="51" style="font-weight:normal;text-anchor: middle;">verlihub</text>
+  <path d="M525.5 166.5 L752.5 166.5 L760.5 174.5 L760.5 197.5 L525.5 197.5 L525.5 166.5 Z" style="stroke:#33322E;fill:#eee8d5;stroke-dasharray:none;"></path>
+  <path d="M752.5 166.5 L752.5 174.5 L760.5 174.5" style="stroke:#33322E;fill:none;stroke-dasharray:none;"></path>
+  <text x="643" y="188" style="font-weight:normal;text-anchor: middle;">nerd_kino/bootstrap.yml</text>
+  <path d="M535.5 237.5 L743.5 237.5 L751.5 245.5 L751.5 268.5 L535.5 268.5 L535.5 237.5 Z" style="stroke:#33322E;fill:#eee8d5;stroke-dasharray:none;"></path>
+  <path d="M743.5 237.5 L743.5 245.5 L751.5 245.5" style="stroke:#33322E;fill:none;stroke-dasharray:none;"></path>
+  <text x="643.5" y="259" style="font-weight:normal;text-anchor: middle;">nerd_kino/upgrade.yml</text>
+  <path d="M838.5 191.5 L1046.5 191.5 L1054.5 199.5 L1054.5 222.5 L838.5 222.5 L838.5 191.5 Z" style="stroke:#33322E;fill:#eee8d5;stroke-dasharray:none;"></path>
+  <path d="M1046.5 191.5 L1046.5 199.5 L1054.5 199.5" style="stroke:#33322E;fill:none;stroke-dasharray:none;"></path>
+  <text x="946.5" y="213" style="font-weight:normal;text-anchor: middle;">nerd_kino/plabook.yml</text>
+  <path d="M506.5 308.5 L771.5 308.5 L779.5 316.5 L779.5 339.5 L506.5 339.5 L506.5 308.5 Z" style="stroke:#33322E;fill:#eee8d5;stroke-dasharray:none;"></path>
+  <path d="M771.5 308.5 L771.5 316.5 L779.5 316.5" style="stroke:#33322E;fill:none;stroke-dasharray:none;"></path>
+  <text x="643" y="330" style="font-weight:normal;text-anchor: middle;">rclone_web_ui/bootstrap.yml</text>
+  <path d="M516.5 433.5 L762.5 433.5 L770.5 441.5 L770.5 464.5 L516.5 464.5 L516.5 433.5 Z" style="stroke:#33322E;fill:#eee8d5;stroke-dasharray:none;"></path>
+  <path d="M762.5 433.5 L762.5 441.5 L770.5 441.5" style="stroke:#33322E;fill:none;stroke-dasharray:none;"></path>
+  <text x="643.5" y="455" style="font-weight:normal;text-anchor: middle;">rclone_web_ui/upgrade.yml</text>
+  <path d="M819.5 397.5 L1065.5 397.5 L1073.5 405.5 L1073.5 428.5 L819.5 428.5 L819.5 397.5 Z" style="stroke:#33322E;fill:#eee8d5;stroke-dasharray:none;"></path>
+  <path d="M1065.5 397.5 L1065.5 405.5 L1073.5 405.5" style="stroke:#33322E;fill:none;stroke-dasharray:none;"></path>
+  <text x="946.5" y="419" style="font-weight:normal;text-anchor: middle;">rclone_web_ui/plabook.yml</text>
+  <path d="M530.5 24.5 L747.5 24.5 L755.5 32.5 L755.5 55.5 L530.5 55.5 L530.5 24.5 Z" style="stroke:#33322E;fill:#eee8d5;stroke-dasharray:none;"></path>
+  <path d="M747.5 24.5 L747.5 32.5 L755.5 32.5" style="stroke:#33322E;fill:none;stroke-dasharray:none;"></path>
+  <text x="643" y="46" style="font-weight:normal;text-anchor: middle;">verlihub/bootstrap.yml</text>
+  <path d="M540.5 95.5 L738.5 95.5 L746.5 103.5 L746.5 126.5 L540.5 126.5 L540.5 95.5 Z" style="stroke:#33322E;fill:#eee8d5;stroke-dasharray:none;"></path>
+  <path d="M738.5 95.5 L738.5 103.5 L746.5 103.5" style="stroke:#33322E;fill:none;stroke-dasharray:none;"></path>
+  <text x="643.5" y="117" style="font-weight:normal;text-anchor: middle;">verlihub/upgrade.yml</text>
+  <path d="M843.5 29.5 L1041.5 29.5 L1049.5 37.5 L1049.5 60.5 L843.5 60.5 L843.5 29.5 Z" style="stroke:#33322E;fill:#eee8d5;stroke-dasharray:none;"></path>
+  <path d="M1041.5 29.5 L1041.5 37.5 L1049.5 37.5" style="stroke:#33322E;fill:none;stroke-dasharray:none;"></path>
+  <text x="946.5" y="51" style="font-weight:normal;text-anchor: middle;">verlihub/plabook.yml</text>
+  <rect x="1644.5" y="80.5" height="31" width="358" style="stroke:#33322E;fill:#c2c2c2;stroke-dasharray:none;"></rect>
+  <text x="1823.5" y="102" style="font-weight:normal;text-anchor: middle;">shokinn.system.ubuntu.base</text>
+  <rect x="1161.5" y="24.5" height="31" width="396" style="stroke:#33322E;fill:#c2c2c2;stroke-dasharray:none;"></rect>
+  <text x="1359.5" y="46" style="font-weight:normal;text-anchor: middle;">shokinn.system.ubuntu.base.rpi</text>
+  <rect x="1113.5" y="151.5" height="31" width="491" style="stroke:#33322E;fill:#c2c2c2;stroke-dasharray:none;"></rect>
+  <text x="1359" y="173" style="font-weight:normal;text-anchor: middle;">shokinn.system.ubuntu.base.x86_64_server</text>
+  <rect x="1711.5" y="504.5" height="31" width="225" style="stroke:#33322E;fill:#c2c2c2;stroke-dasharray:none;"></rect>
+  <text x="1824" y="526" style="font-weight:normal;text-anchor: middle;">shokinn.system.dhparam</text>
+  <rect x="1284.5" y="504.5" height="31" width="149" style="stroke:#33322E;fill:#eee8d5;stroke-dasharray:none;"></rect>
+  <text x="1359" y="526" style="text-anchor: middle;">nginxinc.nginx</text>
+  <rect x="1256.5" y="253.5" height="31" width="206" style="stroke:#33322E;fill:#eb4034;stroke-dasharray:none;"></rect>
+  <text x="1359.5" y="275" style="font-weight:normal;text-anchor: middle;">shokinn.app.iptables</text>
+  <rect x="1213.5" y="433.5" height="31" width="292" style="stroke:#33322E;fill:#eb4034;stroke-dasharray:none;"></rect>
+  <text x="1359.5" y="455" style="font-weight:normal;text-anchor: middle;">shokinn.app.nginx.cert.helper</text>
+  <rect x="1237.5" y="575.5" height="31" width="244" style="stroke:#33322E;fill:#eb4034;stroke-dasharray:none;"></rect>
+  <text x="1359.5" y="597" style="font-weight:normal;text-anchor: middle;">stefangweichinger.rclone</text>
+  <rect x="1279.5" y="362.5" height="31" width="159" style="stroke:#33322E;fill:#eb4034;stroke-dasharray:none;"></rect>
+  <text x="1359" y="384" style="font-weight:normal;text-anchor: middle;">geerlingguy.pip</text>
+  <rect x="1725.5" y="433.5" height="31" width="197" style="stroke:#33322E;fill:#eb4034;stroke-dasharray:none;"></rect>
+  <text x="1824" y="455" style="font-weight:normal;text-anchor: middle;">geerlingguy.certbot</text>
+</svg>

@@ -1,0 +1,25 @@
+---
+firewall_state: started
+firewall_enabled_at_boot: true
+
+firewall_allowed_tcp_ports:
+  - "22"
+  - "25"
+  - "80"
+  - "443"
+firewall_allowed_udp_ports: []
+firewall_forwarded_tcp_ports: []
+firewall_forwarded_udp_ports: []
+firewall_additional_rules: []
+firewall_enable_ipv6: true
+firewall_ip6_additional_rules: []
+firewall_allow_incoming_icmp: true
+firewall_allow_ntp: true
+firewall_log_dropped_packets: true
+firewall_input_filter_policy: DROP
+firewall_forward_filter_policy: ACCEPT
+firewall_output_filter_policy: ACCEPT
+
+# Set to true to ensure other firewall management software is disabled.
+firewall_disable_firewalld: false
+firewall_disable_ufw: false

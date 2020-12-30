@@ -1,0 +1,19 @@
+---
+
+- name: Ensure database user exists
+  postgresql_user:
+    name: "{{ powerdns_authoritative__gpgsql_user }}"
+    password: "{{ powerdns_authoritative__gpgsql_password }}"
+  when: |
+    powerdns_authoritative__setup_db
+
+- name: Ensure database exists
+  postgresql_db:
+    name: "{{ powerdns_authoritative__gpgsql_dbname }}"
+    owner: "{{ powerdns_authoritative__gpgsql_user }}"
+  when: powerdns_authoritative__setup_db
+
+- name: Place schema.sql
+  template:
+    src: schema.sql.j2
+    dest: /etc/powerdns/schema.sql

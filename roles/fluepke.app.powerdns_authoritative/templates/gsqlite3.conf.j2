@@ -1,0 +1,6 @@
+{{ ansible_managed|comment(decoration="# ") }}
+
+gsqlite3-database={{ powerdns_authoritative__gsqlite_database }}
+gsqlite3-pragma-synchronous={{ powerdns_authoritative__gsqlite_pragma_synchronous }}
+gsqlite3-pragma-foreign-keys={{ 'yes' if powerdns_authoritative__gsqlite_pragma_foreign_keys else 'no' }}
+gsqlite3-dnssec={{ 'yes' if powerdns_authoritative__gsqlite_dnssec else 'no' }}

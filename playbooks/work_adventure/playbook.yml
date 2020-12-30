@@ -1,0 +1,9 @@
+---
+- hosts:
+  vars_files: []
+
+  roles: []
+
+  tasks: []
+
+  handlers: []

@@ -1,0 +1,19 @@
+---
+# tasks file for shokinn.base_rpi
+# - name: Install RPi standard software
+#   become: yes
+#   apt:
+#     name: "{{ packages }}"
+#     force_apt_get: yes
+#   vars:
+#     packages: []
+#   notify: reboot
+
+- name: Check if a reboot is required
+  become: yes
+  stat:
+    path: "/var/run/reboot-required"
+  register: stat_reboot_needed
+
+- name: Run Handlers
+  meta: flush_handlers

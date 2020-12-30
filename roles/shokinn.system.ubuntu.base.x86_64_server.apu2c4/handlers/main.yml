@@ -1,0 +1,5 @@
+---
+# handlers file for shokinn.system.ubuntu.base.x86_64_server.apu2c4
+- name: update_grub
+  become: yes
+  command: update-grub2
