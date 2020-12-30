@@ -1,0 +1,74 @@
+---
+- name: Update apt cache
+  apt: update_cache=yes
+  tags:
+    - dependencies
+
+- name: Upgrade all safe packages
+  apt: upgrade=safe
+  tags:
+    - dependencies
+
+- name: Install necessities and nice-to-haves
+  apt: pkg={{ item }} state=present
+  with_items:
+    - apticron
+    - build-essential
+    - debian-goodies
+    - fail2ban
+    - git
+    - htop
+    - iftop
+    - iotop
+    - molly-guard
+    - python3-software-properties
+    - screen
+    - sudo
+    - unattended-upgrades
+    - vim
+    - zsh
+  tags:
+    - dependencies
+
+- name: timezone - configure /etc/timezone
+  copy:
+    content: "{{ common_timezone | regex_replace('$', '\n') }}"
+    dest: /etc/timezone
+    owner: root
+    group: root
+    mode: 0644
+  register: common_timezone_config
+
+- name: timezone - Set localtime to UTC
+  file: src=/usr/share/zoneinfo/Etc/UTC dest=/etc/localtime
+  when: common_timezone_config.changed
+  tags:
+    - skip_ansible_lint
+
+- name: timezone - reconfigure tzdata
+  command: dpkg-reconfigure --frontend noninteractive tzdata
+  when: common_timezone_config.changed
+  tags:
+    - skip_ansible_lint
+
+- name: Apticron email configuration
+  template: src=apticron.conf.j2 dest=/etc/apticron/apticron.conf
+
+- name: Create decrypted directory (even if encfs isn't used)
+  file: state=directory path=/decrypted
+
+- name: Ensure locale en_US.UTF-8 locale is present
+  locale_gen:
+    name: en_US.UTF-8
+    state: present
+
+- import_tasks: encfs.yml
+  tags: encfs
+- import_tasks: users.yml
+  tags: users
+- import_tasks: ssl.yml
+  tags: ssl
+- import_tasks: security.yml
+  tags: security
+- import_tasks: ntp.yml
+  tags: ntp
