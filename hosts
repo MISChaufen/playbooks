@@ -1,3 +1,5 @@
-[private]
+[private-test]
 168.119.172.213
+
+[private-prod]
 188.34.192.62

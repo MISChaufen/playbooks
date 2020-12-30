@@ -8,6 +8,8 @@ help:                     ## printing out the help
 	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
 
 
+test-deploy:              ## test deployment using ansible playbooks
+	ansible-playbook -i ./hosts -l private-test site.yml
 
-deploy:                     ## deploying using ansible playbooks
+deploy:                   ## deployment using ansible playbooks
 	ansible-playbook -i ./hosts site.yml

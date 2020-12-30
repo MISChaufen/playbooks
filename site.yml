@@ -9,3 +9,4 @@
   roles:
     - common
     - ansible-role-docker
+    - ansible-role-certbot
