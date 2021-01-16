@@ -1,7 +1,13 @@
 ## MISChaufen ansible playbooks
 
+## Preparation locally
 
-## Preparation
+```
+apt-get install make
+make bootstrap
+```
+
+## Preparation on Server
 
 1. issue an SSH key
 2. bootstrap a server

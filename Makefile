@@ -8,9 +8,8 @@ help:                     ## printing out the help
 	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
 
 bootstrap:                ## prepare local environment
-	python -m env .venv
-	source .venv/bin/acticate
-	pip install -U -r requirements.txt
+	sudo ./helper/local_prepare.sh
+	./helper/bootstrap.sh
 
 test-deploy:              ## test deployment using ansible playbooks
 	ansible-playbook -i ./hosts -l private-test site.yml
