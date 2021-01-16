@@ -11,8 +11,8 @@ bootstrap:                ## prepare local environment
 	sudo ./helper/local_prepare.sh
 	./helper/bootstrap.sh
 
-test-deploy:              ## test deployment using ansible playbooks
-	ansible-playbook -i ./hosts -l private-test site.yml
+test.deploy:              ## test deployment using ansible playbooks
+	ansible-playbook -i ./hosts -l test_benni_tech site.yml
 
 deploy:                   ## deployment using ansible playbooks
 	ansible-playbook -i ./hosts site.yml

@@ -1,6 +1,13 @@
 ---
 # This is the top-level playbook that defines our entire infrastructure.
 
+
+#- hosts: localhost
+#  vars_files:
+#    - group_vars/localhost
+#  roles:
+#    - hetzner-server
+
 - hosts: all
   user: deploy
   become: True
