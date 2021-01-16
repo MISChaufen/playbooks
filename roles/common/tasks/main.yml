@@ -62,8 +62,6 @@
     name: en_US.UTF-8
     state: present
 
-- import_tasks: encfs.yml
-  tags: encfs
 - import_tasks: users.yml
   tags: users
 - import_tasks: ssl.yml
