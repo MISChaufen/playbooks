@@ -1,5 +1,7 @@
 ## MISChaufen ansible playbooks
 
+The playbooks for MISChaufen. Compatible with Arch Linux and Debian Linux.
+
 ## Preparation locally
 
 ```
