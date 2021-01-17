@@ -14,6 +14,12 @@
   gather_facts: True
 
   roles:
+    - os_upgrade    # up-to-date operating system
+    - role: package_install
+      package_list: "{{ package_install.package_list }}"
+    - ansible-role-timezone
     - common
-    - ansible-role-docker
-    - ansible-role-certbot
+#     - role: ntp_client
+#       ntp_server: "{{ ntp_client.ntp_server }}"
+#    - ansible-role-docker
+#    - ansible-role-certbot

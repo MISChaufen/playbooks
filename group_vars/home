@@ -40,31 +40,28 @@ package_install:
     - xdotool
     - zip
     - zsh
-    - apticron
-    - build-essential
-    - debian-goodies
-    - molly-guard
-    - python3-software-properties
-    - unattended-upgrades
+    - keepass
+    - python-pip
+    - cronie
 
 
 
 #
-# role "ntp_client" settings
+# role "ansible-role-timezone" settings
 #
-ntp_client:
-  ntp_server: ntp1.ptb.de
+timezone: Europe/Berlin
 
 
-#
+
+# 
 # role "common" settings
 #
-domain: mischaufen.com
+domain: home
 main_user_name: mainuser
-organization: mischaufen
+organization: home
 
 # ssh
-sftp_path: "/usr/lib/openssh/sftp-server"
+sftp_path: "/usr/lib/ssh/sftp-server"
 
 # admin email
 # fail2ban reports will be sent to this address
@@ -103,9 +100,6 @@ mail_virtual_aliases:
     destination: "{{ admin_email }}"
     domain_pk_id: 1
 
-# timezone
-# common_timezone will be used in the common and mailserver roles
-common_timezone: 'Europe/Berlin'
 
 # znc
 irc_nick: (required)

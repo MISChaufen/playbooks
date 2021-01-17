@@ -3,10 +3,68 @@
 # Set your variables here.
 ################################################################################
 
-# common
+
+#
+# role "package_install" settings
+#
+
+# packages to install
+package_install:
+  package_list:
+    - bash-completion
+    - bzip2
+    - curl
+    - fail2ban
+    - git
+    - gnupg
+    - gzip
+    - htop
+    - iftop
+    - iotop
+    - lsof
+    - lynis
+    - ntp
+    - python3
+    - rkhunter
+    - rsync
+    - screen
+    - strace
+    - sudo
+    - tar
+    - tree
+    - tmux
+    - unzip
+    - vim
+    - wget
+    - whois
+    - xdotool
+    - zip
+    - zsh
+    - apticron
+    - build-essential
+    - debian-goodies
+    - molly-guard
+    - python3-software-properties
+    - unattended-upgrades
+
+
+
+#
+# role "ntp_client" settings
+#
+ntp_client:
+  ntp_server: ntp1.ptb.de
+
+
+#
+# role "common" settings
+#
 domain: mischaufen.com
 main_user_name: mainuser
 organization: mischaufen
+
+# ssh
+sftp_path: "/usr/lib/openssh/sftp-server"
 
 # admin email
 # fail2ban reports will be sent to this address
@@ -47,7 +105,7 @@ mail_virtual_aliases:
 
 # timezone
 # common_timezone will be used in the common and mailserver roles
-common_timezone: 'Etc/UTC'
+common_timezone: 'Europe/Berlin'
 
 # znc
 irc_nick: (required)

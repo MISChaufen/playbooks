@@ -14,5 +14,11 @@ bootstrap:                ## prepare local environment
 test.deploy:              ## test deployment using ansible playbooks
 	ansible-playbook -i ./hosts -l test_benni_tech site.yml
 
+prod.deploy:              ## prod deployment using ansible playbooks
+	ansible-playbook -i ./hosts -l prod_benni_tech site.yml
+
+home.deploy:              ## home deployment using ansible playbooks
+	ansible-playbook -i ./hosts -l home site.yml
+
 deploy:                   ## deployment using ansible playbooks
 	ansible-playbook -i ./hosts site.yml

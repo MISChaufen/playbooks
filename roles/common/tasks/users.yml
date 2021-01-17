@@ -1,5 +1,10 @@
-- name: Create main user account
+- name: Debian | Create main user account
   user: name={{ main_user_name }} state=present shell={{ main_user_shell }} groups=sudo
+  when: ansible_os_family == 'Debian'
+
+- name: ArchLinux | Create main user account
+  user: name={{ main_user_name }} state=present shell={{ main_user_shell }} groups=wheel
+  when: ansible_os_family == 'Archlinux' or ansible_os_family == 'Arch Linux'
 
 - name: Give main user account sudo power
   template: >-
