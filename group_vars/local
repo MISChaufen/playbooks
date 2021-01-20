@@ -1,0 +1,94 @@
+---
+################################################################################
+# Set your variables here.
+################################################################################
+
+
+#
+# role "package_install" settings
+#
+
+# packages to install
+package_install:
+  package_list:
+    - bash-completion
+    - bzip2
+    - curl
+    - fail2ban
+    - git
+    - gnupg
+    - gzip
+    - htop
+    - iftop
+    - iotop
+    - lsof
+    - lynis
+    - ntp
+    - python3
+    - rkhunter
+    - rsync
+    - screen
+    - strace
+    - sudo
+    - tar
+    - tree
+    - tmux
+    - unzip
+    - vim
+    - wget
+    - whois
+    - xdotool
+    - zip
+    - zsh
+    - keepassxc
+    - dolphin
+    - python-pip
+    - cronie
+    - testdisk
+    - davfs2
+
+
+
+#
+# role "ansible-role-timezone" settings
+#
+timezone: Europe/Berlin
+
+
+
+#
+# role "dotfiles" settings
+#
+dotfiles:
+  dotfiles_files:
+    - .gitconfig
+    - .gitexcludes
+    - .gitignore
+    - .noserc
+    - .screenrc
+    - .shellrc.aliases
+    - .shellrc.env
+    - .shellrc.functions
+    - .shellrc.golang
+    - .shellrc.host.wb-t500
+    - .shellrc.load
+    - .shellrc.prompt
+    - .shellrc.ssh
+    - .vimrc
+    - .zshrc
+
+
+
+# 
+# role "common" settings
+#
+domain: home
+main_user_name: mainuser
+#organization: home
+
+# ssh
+sftp_path: "/usr/lib/ssh/sftp-server"
+
+# admin email
+# fail2ban reports will be sent to this address
+admin_email: "{{ main_user_name }}@{{ domain }}"

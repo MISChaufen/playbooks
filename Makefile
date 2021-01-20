@@ -7,9 +7,15 @@ help:                     ## printing out the help
 	@echo --- TARGETS ---
 	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
 
+clean:                    ## cleanup all temporary/work data
+	rm -rf .venv
+
 bootstrap:                ## prepare local environment
 	sudo ./helper/local_prepare.sh
 	./helper/bootstrap.sh
+
+local.deploy:             ## local deployment using ansible playbooks
+	ansible-playbook -i ./hosts -l local site.yml
 
 test.deploy:              ## test deployment using ansible playbooks
 	ansible-playbook -i ./hosts -l test_benni_tech site.yml

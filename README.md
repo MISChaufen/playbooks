@@ -22,6 +22,7 @@ make bootstrap
 ## Run the Deployment
 
 ```
+source .venv/bin/activate
 make deploy
 ```
 

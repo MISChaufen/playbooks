@@ -11,4 +11,12 @@ chmod 400 /home/deploy/.ssh/authorized_keys
 chown deploy:deploy /home/deploy -R
 echo 'deploy ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/deploy
 
-adduser deploy sudo
+source /etc/os-release
+
+if [ "$ID_LIKE" == "arch" ]; then
+	usermod -G deploy,wheel deploy
+
+else
+	usermod -G deploy,sudo deploy
+
+fi

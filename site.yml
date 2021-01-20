@@ -19,7 +19,18 @@
       package_list: "{{ package_install.package_list }}"
     - ansible-role-timezone
     - common
+    - role: dotfiles
+      dotfiles_files: "{{ dotfiles.dotfiles_files }}"
 #     - role: ntp_client
 #       ntp_server: "{{ ntp_client.ntp_server }}"
 #    - ansible-role-docker
 #    - ansible-role-certbot
+
+
+#- hosts: local
+#  user: deploy
+#  become: True
+#  gather_facts: True
+
+      #  roles:
+      #    - backup
