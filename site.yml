@@ -25,7 +25,7 @@
       files: "{{ backup.files }}"
     - role: ansible-role-cron
       cron_daemon: "{{ cron_daemon }}"
-    - ansible-role-docker
+#    - ansible-role-docker
 #    - ansible-role-certbot
 
 
