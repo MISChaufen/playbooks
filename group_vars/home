@@ -53,9 +53,68 @@ timezone: Europe/Berlin
 
 
 
+#
+# role "dotfiles" settings
+#
+dotfiles:
+  dotfiles_files:
+    - .gitconfig
+    - .gitexcludes
+    - .gitignore
+    - .noserc
+    - .screenrc
+    - .shellrc.aliases
+    - .shellrc.env
+    - .shellrc.functions
+    - .shellrc.golang
+    - .shellrc.host.wb-t500
+    - .shellrc.load
+    - .shellrc.prompt
+    - .shellrc.ssh
+    - .vimrc
+    - .zshrc
+
+
+
+#
+# role "backup" settings
+#
+backup:
+  files: []
+
+
+
+#
+# role "cron" settings
+#
+cron_daemon: cronie
+elao_cron_files:
+  - file: rsnapshot
+    user: root
+    jobs:
+      - name:     rsnapshot-alpha
+        job:      "rsnapshot -v -c /etc/rsnapshot.conf alpha"
+        minute:   0
+        hour:     "*"
+      - name:     rsnapshot-beta
+        job:      "rsnapshot -v -c /etc/rsnapshot.conf beta"
+        minute:   15 
+        hour:     "*/4"
+      - name:     rsnapshot-gamma
+        job:      "rsnapshot -v -c /etc/rsnapshot.conf gamma"
+        minute:   30 
+        hour:     "*/12"
+      - name:     rsnapshot-delta
+        job:      "rsnapshot -v -c /etc/rsnapshot.conf delta"
+        minute:   45
+        hour:     0
+
+
+
 # 
 # role "common" settings
 #
+hostname: server2.home
 domain: home
 main_user_name: mainuser
 organization: home
@@ -75,48 +134,3 @@ certbot_auto_renew_user: "{{ ansible_user | default(lookup('env', 'USER')) }}"
 certbot_auto_renew_hour: "3"
 certbot_auto_renew_minute: "30"
 certbot_auto_renew_options: "--quiet --no-self-upgrade"
-
-
-# mail
-mail_virtual_domains:
-  - name: "{{ domain }}"
-    pk_id: 1
-mail_virtual_users:
-  - account: "{{ main_user_name }}"
-    domain: "{{ domain }}"
-    password: TODO
-    domain_pk_id: 1
-mail_virtual_aliases:
-  - source: "root@{{ domain }}"
-    destination: "{{ admin_email }}"
-    domain_pk_id: 1
-  - source: "postmaster@{{ domain }}"
-    destination: "{{ admin_email }}"
-    domain_pk_id: 1
-  - source: "webmaster@{{ domain }}"
-    destination: "{{ admin_email }}"
-    domain_pk_id: 1
-  - source: "abuse@{{ domain }}"
-    destination: "{{ admin_email }}"
-    domain_pk_id: 1
-
-
-# znc
-irc_nick: (required)
-irc_ident: (required)
-irc_realname: (required)
-irc_quitmsg: (required)
-irc_password: TODO
-
-# xmpp
-prosody_admin: "{{ admin_email }}"
-prosody_virtual_domain: "{{ domain }}"
-prosody_accounts:
-  - name: "{{ main_user_name }}"
-    password: TODO
-
-# openvpn
-openvpn_clients:
-  - laptop
-  - phone
-  - tablet

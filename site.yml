@@ -21,9 +21,11 @@
     - common
     - role: dotfiles
       dotfiles_files: "{{ dotfiles.dotfiles_files }}"
-#     - role: ntp_client
-#       ntp_server: "{{ ntp_client.ntp_server }}"
-#    - ansible-role-docker
+    - role: backup
+      files: "{{ backup.files }}"
+    - role: ansible-role-cron
+      cron_daemon: "{{ cron_daemon }}"
+    - ansible-role-docker
 #    - ansible-role-certbot
 
 

@@ -46,6 +46,7 @@ package_install:
     - cronie
     - testdisk
     - davfs2
+    - rsnapshot
 
 
 
@@ -79,9 +80,46 @@ dotfiles:
 
 
 
+#
+# role "backup" settings
+#
+backup:
+  files:
+    - /run/media/benni/webdav/
+
+
+
+#
+# role "cron" settings
+#
+cron_daemon: cronie
+elao_cron_files:
+  - file: rsnapshot
+    user: root
+    jobs:
+      - name:     rsnapshot-alpha
+        job:      "rsnapshot -v -c /etc/rsnapshot.conf alpha"
+        minute:   0
+        hour:     "*"
+      - name:     rsnapshot-beta
+        job:      "rsnapshot -v -c /etc/rsnapshot.conf beta"
+        minute:   15 
+        hour:     "*/4"
+      - name:     rsnapshot-gamma
+        job:      "rsnapshot -v -c /etc/rsnapshot.conf gamma"
+        minute:   30 
+        hour:     "*/12"
+      - name:     rsnapshot-delta
+        job:      "rsnapshot -v -c /etc/rsnapshot.conf delta"
+        minute:   45
+        hour:     0
+
+
+
 # 
 # role "common" settings
 #
+hostname: t540.home
 domain: home
 main_user_name: mainuser
 #organization: home
@@ -92,3 +130,12 @@ sftp_path: "/usr/lib/ssh/sftp-server"
 # admin email
 # fail2ban reports will be sent to this address
 admin_email: "{{ main_user_name }}@{{ domain }}"
+
+docker_users:
+  - mainuser
+
+certbot_auto_renew: true
+certbot_auto_renew_user: "{{ ansible_user | default(lookup('env', 'USER')) }}"
+certbot_auto_renew_hour: "3"
+certbot_auto_renew_minute: "30"
+certbot_auto_renew_options: "--quiet --no-self-upgrade"
