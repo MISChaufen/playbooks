@@ -18,7 +18,7 @@
       dotfiles_files: "{{ dotfiles.dotfiles_files }}"
       dotfiles_zsh_files: "{{ dotfiles.dotfiles_zsh_files }}"
       dotfiles_shellrc_files: "{{ dotfiles.dotfiles_shellrc_files }}"
-      dotfiles_version: "933bc843df03dd2ec7bb220b0995964ff12f9100"
+      dotfiles_version: "38c49003736d94f9944fe868d523fc0b84aaffe0"
 
 
 - hosts: all
@@ -32,7 +32,7 @@
       dotfiles_files: "{{ dotfiles.dotfiles_files }}"
       dotfiles_zsh_files: "{{ dotfiles.dotfiles_zsh_files }}"
       dotfiles_shellrc_files: "{{ dotfiles.dotfiles_shellrc_files }}"
-      dotfiles_version: "933bc843df03dd2ec7bb220b0995964ff12f9100"
+      dotfiles_version: "38c49003736d94f9944fe868d523fc0b84aaffe0"
     - os_upgrade    # up-to-date operating system
     - role: package_install
       package_list: "{{ package_install.package_list }}"

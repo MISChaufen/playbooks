@@ -14,3 +14,11 @@
     group=root
     mode=0440
     validate='visudo -cf %s'
+
+- name: Setup zshenv
+  template: >-
+    src=roles/common/templates/zshenv.j2
+    dest=/etc/zsh/zshenv
+    owner=root
+    group=root
+    mode=0664

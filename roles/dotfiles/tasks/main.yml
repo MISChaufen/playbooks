@@ -35,13 +35,6 @@
   with_items: "{{ dotfiles_zsh_files }}"
   tags:
     - skip_ansible_lint
-- name: dotfiles | link zshrc
-  file:
-    src: "~/.config/zsh/.zshrc"
-    dest: "~/.zshrc"
-    state: link
-    force: "yes"
-
 - name: dotfiles | link shellrc dotfiles
   file:
     src: "{{ dotfiles_dest }}/{{ item }}"
