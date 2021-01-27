@@ -108,6 +108,17 @@ elao_cron_files:
         job:      "rsnapshot -v -c /etc/rsnapshot.conf delta"
         minute:   45
         hour:     0
+  - file: os-update
+    user: root
+    jobs:
+      - name:     os-update-download-only
+        job:      "/usr/bin/pacman -Syyuwq --noconfirm"
+        minute:   10 
+        hour:     "*/6"
+      - name:     os-update
+        job:      "/usr/bin/pacman -Syuq --noconfirm"
+        minute:   40
+        hour:     "*/12"
 
 
 
