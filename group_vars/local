@@ -74,6 +74,7 @@ dotfiles:
     - .shellrc.host.wb-t500
     - .shellrc.load
     - .shellrc.prompt
+    - .shellrc.rust
     - .shellrc.ssh
     - .vimrc
     - .zshrc
