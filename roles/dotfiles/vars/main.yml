@@ -3,3 +3,4 @@
 dotfiles_git_repo: "https://github.com/bboortz/dotfiles.git"
 dotfiles_dest: "~/files/dotfiles"
 dotfiles_version: "0202eef8c772119cf6b77d8be91436af26973753"
+ohmyzsh_git_repo: "https://github.com/ohmyzsh/ohmyzsh.git"

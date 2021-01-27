@@ -8,19 +8,36 @@
 #  roles:
 #    - hetzner-server
 
+
+- hosts: all
+  user: deploy
+  gather_facts: True
+
+  roles:
+    - role: dotfiles
+      dotfiles_files: "{{ dotfiles.dotfiles_files }}"
+      dotfiles_zsh_files: "{{ dotfiles.dotfiles_zsh_files }}"
+      dotfiles_shellrc_files: "{{ dotfiles.dotfiles_shellrc_files }}"
+      dotfiles_version: "933bc843df03dd2ec7bb220b0995964ff12f9100"
+
+
 - hosts: all
   user: deploy
   become: True
   gather_facts: True
 
   roles:
+    - ansible-role-user
+    - role: dotfiles
+      dotfiles_files: "{{ dotfiles.dotfiles_files }}"
+      dotfiles_zsh_files: "{{ dotfiles.dotfiles_zsh_files }}"
+      dotfiles_shellrc_files: "{{ dotfiles.dotfiles_shellrc_files }}"
+      dotfiles_version: "933bc843df03dd2ec7bb220b0995964ff12f9100"
     - os_upgrade    # up-to-date operating system
     - role: package_install
       package_list: "{{ package_install.package_list }}"
     - ansible-role-timezone
     - common
-    - role: dotfiles
-      dotfiles_files: "{{ dotfiles.dotfiles_files }}"
     - role: backup
       files: "{{ backup.files }}"
     - role: ansible-role-cron
@@ -29,10 +46,3 @@
 #    - ansible-role-certbot
 
 
-#- hosts: local
-#  user: deploy
-#  become: True
-#  gather_facts: True
-
-      #  roles:
-      #    - backup

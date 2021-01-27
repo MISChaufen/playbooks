@@ -5,6 +5,37 @@
 
 
 #
+# role "ansible-role-user" settings
+#
+user_shell: "/usr/bin/zsh"
+user_list_group:
+  - name: deploy
+    uid: 1000
+  - name: mainuser
+    uid: 1001
+
+user_list:
+  - name: root
+    uid: 0
+    groups:
+      - root
+    shell: "/usr/bin/zsh"
+  - name: deploy
+    uid: 1000
+    groups:
+      - deploy
+      - sudo
+    shell: "/usr/bin/zsh"
+  - name: mainuser
+    uid: 1001
+    groups:
+      - mainuser
+      - sudo
+    shell: "/usr/bin/zsh"
+
+
+
+#
 # role "package_install" settings
 #
 
@@ -46,6 +77,7 @@ package_install:
     - molly-guard
     - python3-software-properties
     - unattended-upgrades
+    - rsnapshot
 
 
 
@@ -67,16 +99,19 @@ dotfiles:
     - .gitignore
     - .noserc
     - .screenrc
+    - .vimrc
+  dotfiles_zsh_files:
+    - .zshrc
+  dotfiles_shellrc_files:
     - .shellrc.aliases
     - .shellrc.env
     - .shellrc.functions
     - .shellrc.golang
-    - .shellrc.host.wb-t500
     - .shellrc.load
     - .shellrc.prompt
+    - .shellrc.rust
     - .shellrc.ssh
-    - .vimrc
-    - .zshrc
+    - .shellrc.xdg
 
 
 

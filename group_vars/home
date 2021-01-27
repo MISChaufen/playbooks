@@ -5,6 +5,49 @@
 
 
 #
+# role "ansible-role-user" settings
+#
+user_shell: "/usr/bin/zsh"
+user_list_group:
+  - name: benni
+    uid: 1000
+  - name: mainuser
+    uid: 1001
+  - name: deploy
+    uid: 1002
+
+user_list:
+  - name: root
+    uid: 0
+    groups:
+      - root
+    shell: "/usr/bin/zsh"
+  - name: benni
+    uid: 1000
+    groups:
+      - benni
+      - sys
+      - network
+      - power
+      - lp
+      - wheel
+    shell: "/usr/bin/zsh"
+  - name: mainuser
+    uid: 1001
+    groups:
+      - mainuser
+      - wheel
+    shell: "/usr/bin/zsh"
+  - name: deploy
+    uid: 1002
+    groups:
+      - deploy
+      - wheel
+    shell: "/usr/bin/zsh"
+
+
+
+#
 # role "package_install" settings
 #
 
@@ -63,16 +106,19 @@ dotfiles:
     - .gitignore
     - .noserc
     - .screenrc
+    - .vimrc
+  dotfiles_zsh_files:
+    - .zshrc
+  dotfiles_shellrc_files:
     - .shellrc.aliases
     - .shellrc.env
     - .shellrc.functions
     - .shellrc.golang
-    - .shellrc.host.wb-t500
     - .shellrc.load
     - .shellrc.prompt
+    - .shellrc.rust
     - .shellrc.ssh
-    - .vimrc
-    - .zshrc
+    - .shellrc.xdg
 
 
 
