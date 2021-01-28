@@ -1,4 +1,3 @@
----
 ################################################################################
 # Set your variables here.
 ################################################################################
@@ -147,6 +146,13 @@ elao_cron_files:
       - name:     rsnapshot-delta
         job:      "rsnapshot -v -c /etc/rsnapshot.conf delta"
         minute:   45
+        hour:     0
+  - file: disk-cleanup
+    user: root
+    jobs:
+      - name:     disk-cleanup
+        job:      sh -c 'apt-get autoremove -y; apt-get autoclean -y'
+        minute:   55
         hour:     0
 
 

@@ -170,6 +170,13 @@ elao_cron_files:
         job:      "/usr/bin/pacman -Syuq --noconfirm"
         minute:   40
         hour:     "*/12"
+  - file: disk-cleanup
+    user: root
+    jobs:
+      - name:     disk-cleanup
+        job:      "/usr/bin/pacman -Scc --noconfirm"
+        minute:   55
+        hour:     0
 
 
 
