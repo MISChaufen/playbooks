@@ -14,6 +14,10 @@
   file:
     path: "~/.config/shellrc"
     state: directory
+- name: Creates git directory
+  file:
+    path: "~/.config/git"
+    state: directory
 
 - name: dotfiles | clone dotfiles git repository
   git:
@@ -42,6 +46,15 @@
     state: link
     force: "yes"
   with_items: "{{ dotfiles_shellrc_files }}"
+  tags:
+    - skip_ansible_lint
+- name: dotfiles | link git dotfiles
+  file:
+    src: "{{ dotfiles_dest }}/git/{{ item }}"
+    dest: "~/.config/git/{{ item }}"
+    state: link
+    force: "yes"
+  with_items: "{{ dotfiles_git_files }}"
   tags:
     - skip_ansible_lint
 

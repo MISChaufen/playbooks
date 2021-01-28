@@ -104,9 +104,6 @@ timezone: Europe/Berlin
 #
 dotfiles:
   dotfiles_files:
-    - .gitconfig
-    - .gitexcludes
-    - .gitignore
     - .noserc
     - .screenrc
     - .vimrc
@@ -122,6 +119,10 @@ dotfiles:
     - .shellrc.rust
     - .shellrc.ssh
     - .shellrc.xdg
+  dotfiles_git_files:
+    - config
+    - excludes
+    - ignore
 
 
 

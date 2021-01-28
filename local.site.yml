@@ -10,7 +10,6 @@
 
 
 - hosts: all
-  user: deploy
   gather_facts: True
 
   roles:
@@ -21,14 +20,12 @@
       dotfiles_git_files: "{{ dotfiles.dotfiles_git_files }}"
       dotfiles_version: "91d715af51a0b64d3fec0fc142f7248447062b39"
 
-
 - hosts: all
   user: deploy
   become: True
   gather_facts: True
 
   roles:
-    - ansible-role-user
     - role: dotfiles
       dotfiles_files: "{{ dotfiles.dotfiles_files }}"
       dotfiles_zsh_files: "{{ dotfiles.dotfiles_zsh_files }}"
