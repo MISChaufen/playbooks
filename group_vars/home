@@ -42,7 +42,6 @@ user_list:
     uid: 2001
     groups:
       - mainuser
-      - wheel
     shell: "/usr/bin/zsh"
 
 

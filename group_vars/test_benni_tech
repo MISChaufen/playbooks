@@ -29,7 +29,6 @@ user_list:
     uid: 2001
     groups:
       - mainuser
-      - sudo
     shell: "/usr/bin/zsh"
 
 
@@ -55,6 +54,7 @@ package_install:
     - lynis
     - ntp
     - python3
+    - python3-venv
     - rkhunter
     - rsync
     - screen

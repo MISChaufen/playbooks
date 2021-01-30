@@ -23,3 +23,8 @@
     dest: "{{ webmon_dest }}"
     version: "{{ webmon_version }}"
 
+- name: Install webmon dependencies
+  command: "{{ webmon_dest }}/scripts/install.sh"
+
+- name: Update webmon measures
+  command: "{{ webmon_dest }}/update.sh"
