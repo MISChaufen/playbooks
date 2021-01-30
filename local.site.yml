@@ -18,7 +18,8 @@
       dotfiles_zsh_files: "{{ dotfiles.dotfiles_zsh_files }}"
       dotfiles_shellrc_files: "{{ dotfiles.dotfiles_shellrc_files }}"
       dotfiles_git_files: "{{ dotfiles.dotfiles_git_files }}"
-      dotfiles_version: "91d715af51a0b64d3fec0fc142f7248447062b39"
+    - role: webmon
+
 
 - hosts: all
   user: deploy
@@ -31,7 +32,6 @@
       dotfiles_zsh_files: "{{ dotfiles.dotfiles_zsh_files }}"
       dotfiles_shellrc_files: "{{ dotfiles.dotfiles_shellrc_files }}"
       dotfiles_git_files: "{{ dotfiles.dotfiles_git_files }}"
-      dotfiles_version: "91d715af51a0b64d3fec0fc142f7248447062b39"
     - os_upgrade    # up-to-date operating system
     - role: package_install
       package_list: "{{ package_install.package_list }}"

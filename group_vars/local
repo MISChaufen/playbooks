@@ -89,6 +89,9 @@ package_install:
     - testdisk
     - davfs2
     - rsnapshot
+    - gcc
+    - go
+    - jq
 
 
 
@@ -177,6 +180,13 @@ elao_cron_files:
         job:      "/usr/bin/pacman -Scc --noconfirm"
         minute:   55
         hour:     0
+  - file: webmon
+    user: benni
+    jobs:
+      - name:     update-information
+        job:      "/home/benni/files/webmon/update.sh"
+        minute:   "*"
+        hour:     "*"
 
 
 

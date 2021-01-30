@@ -6,6 +6,16 @@
     msg: "dotfiles"
     verbosity: 1
 
+- name: Creates Documents directory
+  file:
+    path: "~/Documents"
+    state: directory
+- name: link files
+  file:
+    src: "~/Documents"
+    dest: "~/files"
+    state: link
+    force: "yes"
 - name: Creates zsh directory
   file:
     path: "~/.config/zsh"
