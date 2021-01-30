@@ -2,31 +2,13 @@
 # This is the top-level playbook that defines our entire infrastructure.
 
 
-#- hosts: localhost
-#  vars_files:
-#    - group_vars/localhost
-#  roles:
-#    - hetzner-server
-
-
-- hosts: all
-  gather_facts: True
-
-  roles:
-    - role: dotfiles
-      dotfiles_files: "{{ dotfiles.dotfiles_files }}"
-      dotfiles_zsh_files: "{{ dotfiles.dotfiles_zsh_files }}"
-      dotfiles_shellrc_files: "{{ dotfiles.dotfiles_shellrc_files }}"
-      dotfiles_git_files: "{{ dotfiles.dotfiles_git_files }}"
-    - role: webmon
-
-
 - hosts: all
   user: deploy
   become: True
   gather_facts: True
 
   roles:
+    - ansible-role-user
     - role: dotfiles
       dotfiles_files: "{{ dotfiles.dotfiles_files }}"
       dotfiles_zsh_files: "{{ dotfiles.dotfiles_zsh_files }}"
@@ -41,7 +23,42 @@
       files: "{{ backup.files }}"
     - role: ansible-role-cron
       cron_daemon: "{{ cron_daemon }}"
-#    - ansible-role-docker
-#    - ansible-role-certbot
 
+
+- hosts: all
+  gather_facts: False
+
+  roles:
+    - role: dotfiles
+      dotfiles_files: "{{ dotfiles.dotfiles_files }}"
+      dotfiles_zsh_files: "{{ dotfiles.dotfiles_zsh_files }}"
+      dotfiles_shellrc_files: "{{ dotfiles.dotfiles_shellrc_files }}"
+      dotfiles_git_files: "{{ dotfiles.dotfiles_git_files }}"
+
+
+- hosts: all
+  become: True
+  become_user: deploy
+  gather_facts: False
+
+  roles:
+    - role: dotfiles
+      dotfiles_files: "{{ dotfiles.dotfiles_files }}"
+      dotfiles_zsh_files: "{{ dotfiles.dotfiles_zsh_files }}"
+      dotfiles_shellrc_files: "{{ dotfiles.dotfiles_shellrc_files }}"
+      dotfiles_git_files: "{{ dotfiles.dotfiles_git_files }}"
+
+
+- hosts: all
+  become: True
+  become_user: mainuser
+  gather_facts: False
+
+  roles:
+    - role: dotfiles
+      dotfiles_files: "{{ dotfiles.dotfiles_files }}"
+      dotfiles_zsh_files: "{{ dotfiles.dotfiles_zsh_files }}"
+      dotfiles_shellrc_files: "{{ dotfiles.dotfiles_shellrc_files }}"
+      dotfiles_git_files: "{{ dotfiles.dotfiles_git_files }}"
+    - role: webmon
 

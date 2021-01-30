@@ -10,9 +10,9 @@
 user_shell: "/usr/bin/zsh"
 user_list_group:
   - name: deploy
-    uid: 1000
+    uid: 2000
   - name: mainuser
-    uid: 1001
+    uid: 2001
 
 user_list:
   - name: root
@@ -21,13 +21,13 @@ user_list:
       - root
     shell: "/usr/bin/zsh"
   - name: deploy
-    uid: 1000
+    uid: 2000
     groups:
       - deploy
       - sudo
     shell: "/usr/bin/zsh"
   - name: mainuser
-    uid: 1001
+    uid: 2001
     groups:
       - mainuser
       - sudo
@@ -78,6 +78,7 @@ package_install:
     - python3-software-properties
     - unattended-upgrades
     - rsnapshot
+    - mutt
 
 
 
@@ -133,21 +134,25 @@ elao_cron_files:
     user: root
     jobs:
       - name:     rsnapshot-alpha
-        job:      "rsnapshot -v -c /etc/rsnapshot.conf alpha"
+        job:      "rsnapshot -c /etc/rsnapshot.conf alpha"
         minute:   0
         hour:     "*"
       - name:     rsnapshot-beta
-        job:      "rsnapshot -v -c /etc/rsnapshot.conf beta"
+        job:      "rsnapshot -c /etc/rsnapshot.conf beta"
         minute:   15 
         hour:     "*/4"
       - name:     rsnapshot-gamma
-        job:      "rsnapshot -v -c /etc/rsnapshot.conf gamma"
+        job:      "rsnapshot -c /etc/rsnapshot.conf gamma"
         minute:   30 
         hour:     "*/12"
       - name:     rsnapshot-delta
-        job:      "rsnapshot -v -c /etc/rsnapshot.conf delta"
+        job:      "rsnapshot -c /etc/rsnapshot.conf delta"
         minute:   45
         hour:     0
+      - name:     docker-prune
+        job:      "docker system prune -a -f"
+        minute:   55
+        hour:     1
   - file: disk-cleanup
     user: root
     jobs:
@@ -155,6 +160,13 @@ elao_cron_files:
         job:      sh -c 'apt-get autoremove -y; apt-get autoclean -y'
         minute:   55
         hour:     0
+  - file: webmon
+    user: mainuser
+    jobs:
+      - name:     update-information
+        job:      "/home/mainuser/files/webmon/update.sh"
+        minute:   "*"
+        hour:     "*"
 
 
 
@@ -163,8 +175,8 @@ elao_cron_files:
 #
 hostname: prod.benni.tech
 domain: benni.tech
+deploy_user_name: deploy
 main_user_name: mainuser
-organization: benni
 
 # ssh
 sftp_path: "/usr/lib/openssh/sftp-server"

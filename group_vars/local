@@ -11,10 +11,10 @@ user_shell: "/usr/bin/zsh"
 user_list_group:
   - name: benni
     uid: 1000
-  - name: mainuser
-    uid: 1001
   - name: deploy
-    uid: 1002
+    uid: 2000
+  - name: mainuser
+    uid: 2001
 
 user_list:
   - name: root
@@ -32,16 +32,16 @@ user_list:
       - lp
       - wheel
     shell: "/usr/bin/zsh"
-  - name: mainuser
-    uid: 1001
-    groups:
-      - mainuser
-      - wheel
-    shell: "/usr/bin/zsh"
   - name: deploy
-    uid: 1002
+    uid: 2000
     groups:
       - deploy
+      - wheel
+    shell: "/usr/bin/zsh"
+  - name: mainuser
+    uid: 2001
+    groups:
+      - mainuser
       - wheel
     shell: "/usr/bin/zsh"
 
@@ -92,6 +92,7 @@ package_install:
     - gcc
     - go
     - jq
+    - mutt
 
 
 
@@ -147,19 +148,19 @@ elao_cron_files:
     user: root
     jobs:
       - name:     rsnapshot-alpha
-        job:      "rsnapshot -v -c /etc/rsnapshot.conf alpha"
+        job:      "rsnapshot -c /etc/rsnapshot.conf alpha"
         minute:   0
         hour:     "*"
       - name:     rsnapshot-beta
-        job:      "rsnapshot -v -c /etc/rsnapshot.conf beta"
+        job:      "rsnapshot -c /etc/rsnapshot.conf beta"
         minute:   15 
         hour:     "*/4"
       - name:     rsnapshot-gamma
-        job:      "rsnapshot -v -c /etc/rsnapshot.conf gamma"
+        job:      "rsnapshot -c /etc/rsnapshot.conf gamma"
         minute:   30 
         hour:     "*/12"
       - name:     rsnapshot-delta
-        job:      "rsnapshot -v -c /etc/rsnapshot.conf delta"
+        job:      "rsnapshot -c /etc/rsnapshot.conf delta"
         minute:   45
         hour:     0
   - file: os-update
@@ -180,11 +181,15 @@ elao_cron_files:
         job:      "/usr/bin/pacman -Scc --noconfirm"
         minute:   55
         hour:     0
+      - name:     docker-prune
+        job:      "docker system prune -a -f"
+        minute:   55
+        hour:     1
   - file: webmon
-    user: benni
+    user: mainuser
     jobs:
       - name:     update-information
-        job:      "/home/benni/files/webmon/update.sh"
+        job:      "/home/mainuser/files/webmon/update.sh"
         minute:   "*"
         hour:     "*"
 
@@ -195,8 +200,8 @@ elao_cron_files:
 #
 hostname: t540.home
 domain: home
+deploy_user_name: deploy
 main_user_name: mainuser
-#organization: home
 
 # ssh
 sftp_path: "/usr/lib/ssh/sftp-server"

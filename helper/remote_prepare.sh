@@ -1,6 +1,6 @@
 #!/bin/sh
 
-useradd deploy
+useradd -u 2000 -g 2000 deploy
 mkdir /home/deploy
 
 mkdir /home/deploy/.ssh
