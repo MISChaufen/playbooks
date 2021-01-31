@@ -17,14 +17,23 @@ bootstrap:                ## prepare local environment
 local.deploy:             ## local deployment using ansible playbooks
 	ansible-playbook -i ./hosts -l local local.site.yml
 
-test.deploy:              ## test deployment using ansible playbooks
-	ansible-playbook -i ./hosts -l test_benni_tech site.yml
-
-prod.deploy:              ## prod deployment using ansible playbooks
-	ansible-playbook -i ./hosts -l prod_benni_tech site.yml
-
 home.deploy:              ## home deployment using ansible playbooks
 	ansible-playbook -i ./hosts -l home site.yml
 
+t540p.home.deploy:        ## t540p.home deployment using ansible playbooks
+	ansible-playbook -i ./hosts -l t540p_home site.yml
+
+benni.tech.deploy:        ## benni.tech deployment using ansible playbooks
+	ansible-playbook -i ./hosts -l benni_tech site.yml
+
+test.benni.tech.deploy:   ## test deployment using ansible playbooks
+	ansible-playbook -i ./hosts -l test_benni_tech site.yml
+
+prod.benni.techdeploy:    ## prod deployment using ansible playbooks
+	ansible-playbook -i ./hosts -l prod_benni_tech site.yml
+
 deploy:                   ## deployment using ansible playbooks
 	ansible-playbook -i ./hosts site.yml
+
+conn.test:                ## run connetion tests
+	ansible -i ./hosts -m ping -u deploy all
