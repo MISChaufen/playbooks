@@ -5,10 +5,12 @@
 
 
 #
-# role "ansible-role-user" settings
+# role "ansible-role-management-user" settings
 #
 user_shell: "/usr/bin/zsh"
-user_list_group:
+ssh_pub_key_hetzner: "{{ lookup('file', '~/.ssh/id_ed25519_hetzner.pub') }}"
+
+management_user_list_group:
   - name: benni
     uid: 1000
   - name: deploy
@@ -16,7 +18,7 @@ user_list_group:
   - name: mainuser
     uid: 2001
 
-user_list:
+management_user_settings:
   - name: root
     uid: 0
     groups:
@@ -32,17 +34,27 @@ user_list:
       - lp
       - wheel
     shell: "/usr/bin/zsh"
-  - name: deploy
-    uid: 2000
-    groups:
-      - deploy
-      - wheel
-    shell: "/usr/bin/zsh"
   - name: mainuser
     uid: 2001
     groups:
       - mainuser
     shell: "/usr/bin/zsh"
+  - name: deploy
+    comment: Deployment User
+    uid: 2000
+    groups:
+      - deploy
+      - wheel
+    shell: "/usr/bin/zsh"
+    authorized_keys:
+      - key: "{{ ssh_pub_key_hetzner }}"
+        exclusive: yes
+    sudo:
+      hosts: ALL
+      as: ALL
+      commands: ALL
+      nopasswd: yes
+
 
 
 #
@@ -81,12 +93,16 @@ package_install:
     - xdotool
     - zip
     - zsh
-    - keepass
+    - keepassxc
+    - dolphin
     - python-pip
     - cronie
     - testdisk
     - davfs2
     - rsnapshot
+    - gcc
+    - go
+    - jq
     - mutt
 
 
@@ -129,7 +145,8 @@ dotfiles:
 # role "backup" settings
 #
 backup:
-  files: []
+  files:
+    - /run/media/benni/webdav/
 
 
 
@@ -194,8 +211,6 @@ elao_cron_files:
 #
 hostname: server2.home
 domain: home
-deploy_user_name: deploy
-main_user_name: mainuser
 
 # ssh
 sftp_path: "/usr/lib/ssh/sftp-server"

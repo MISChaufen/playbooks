@@ -4,32 +4,43 @@
 
 
 #
-# role "ansible-role-user" settings
+# role "ansible-role-management-user" settings
 #
 user_shell: "/usr/bin/zsh"
-user_list_group:
+ssh_pub_key_hetzner: "{{ lookup('file', '~/.ssh/id_ed25519_hetzner.pub') }}"
+
+management_user_list_group:
   - name: deploy
     uid: 2000
   - name: mainuser
     uid: 2001
 
-user_list:
+management_user_settings:
   - name: root
     uid: 0
     groups:
       - root
-    shell: "/usr/bin/zsh"
-  - name: deploy
-    uid: 2000
-    groups:
-      - deploy
-      - sudo
     shell: "/usr/bin/zsh"
   - name: mainuser
     uid: 2001
     groups:
       - mainuser
     shell: "/usr/bin/zsh"
+  - name: deploy
+    comment: Deployment User
+    uid: 2000
+    groups:
+      - deploy
+      - sudo
+    shell: "/usr/bin/zsh"
+    authorized_keys:
+      - key: "{{ ssh_pub_key_hetzner }}"
+        exclusive: yes
+    sudo:
+      hosts: ALL
+      as: ALL
+      commands: ALL
+      nopasswd: yes
 
 
 
@@ -174,8 +185,6 @@ elao_cron_files:
 #
 hostname: test.benni.tech
 domain: benni.tech
-deploy_user_name: deploy
-main_user_name: mainuser
 
 # ssh
 sftp_path: "/usr/lib/openssh/sftp-server"

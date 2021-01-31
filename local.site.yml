@@ -8,7 +8,7 @@
   gather_facts: True
 
   roles:
-    - ansible-role-user
+    - grog.management-user
     - role: dotfiles
       dotfiles_files: "{{ dotfiles.dotfiles_files }}"
       dotfiles_zsh_files: "{{ dotfiles.dotfiles_zsh_files }}"
