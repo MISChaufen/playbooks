@@ -20,6 +20,9 @@ local.deploy:             ## local deployment using ansible playbooks
 home.deploy:              ## home deployment using ansible playbooks
 	ansible-playbook -i ./hosts -l home site.yml
 
+server.home.deploy:      ## server2.home deployment using ansible playbooks
+	ansible-playbook -i ./hosts -l server_home site.yml
+
 t540p.home.deploy:        ## t540p.home deployment using ansible playbooks
 	ansible-playbook -i ./hosts -l t540p_home site.yml
 

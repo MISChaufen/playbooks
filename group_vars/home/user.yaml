@@ -8,7 +8,7 @@
 # role "ansible-role-management-user" settings
 #
 user_shell: "/usr/bin/zsh"
-ssh_pub_key_hetzner: "{{ lookup('file', '~/.ssh/id_ed25519_hetzner.pub') }}"
+ssh_pub_key_home: "{{ lookup('file', '~/.ssh/id_ed25519_home.pub') }}"
 
 management_user_list_group:
   - name: benni
@@ -47,7 +47,7 @@ management_user_settings:
       - wheel
     shell: "/usr/bin/zsh"
     authorized_keys:
-      - key: "{{ ssh_pub_key_hetzner }}"
+      - key: "{{ ssh_pub_key_home }}"
         exclusive: yes
     sudo:
       hosts: ALL

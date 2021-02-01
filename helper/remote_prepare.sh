@@ -1,5 +1,9 @@
-#!/bin/sh
+#!/bin/bash
+ 
+set -e
+set -u
 
+groupadd -g 2000 deploy
 useradd -u 2000 -g 2000 deploy
 mkdir /home/deploy
 
