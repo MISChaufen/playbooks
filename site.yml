@@ -50,5 +50,3 @@
       dotfiles_shellrc_files: "{{ dotfiles.dotfiles_shellrc_files }}"
       dotfiles_git_files: "{{ dotfiles.dotfiles_git_files }}"
     - role: webmon
-
-
