@@ -2,4 +2,4 @@
 # vars file for os
 webmon_git_repo: "https://github.com/bboortz/webmon.git"
 webmon_dest: "~/files/webmon"
-webmon_version: "a703afbc6649fc3fae6418de74bb3036828dba48"
+webmon_version: "cb2360ea204e3d66a40b961800f8e924a30aa914"
