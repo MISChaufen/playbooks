@@ -37,11 +37,11 @@ snapshot_root	/home/backup/snapshots/
 #
 # See the README file or the man page for more details.
 #
-cmd_cp		/usr/bin/cp
+cmd_cp		{{ cp_bin }}
 
 # uncomment this to use the rm program instead of the built-in perl routine.
 #
-cmd_rm		/usr/bin/rm
+cmd_rm		{{ rm_bin }}
 
 # rsync must be enabled for anything to work. This is the only command that
 # must be enabled.

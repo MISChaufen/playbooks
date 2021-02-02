@@ -8,6 +8,5 @@
 # role "backup" settings
 #
 backup:
-  files: []
-  cp_bin: /usr/bin/cp
-  rm_bin: /usr/bin/rm
+  files:
+    - /run/media/benni/webdav/

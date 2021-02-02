@@ -9,5 +9,5 @@
 #
 backup:
   files: []
-  cp_bin: /usr/bin/cp
-  rm_bin: /usr/bin/rm
+  cp_bin: /bin/cp
+  rm_bin: /bin/cp
