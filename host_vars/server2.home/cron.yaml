@@ -65,8 +65,8 @@ elao_cron_files:
       - name:     zfs-pool-backup-scrub-daily
         job:      "/usr/bin/zpool scrub zfs-pool-backup"
         minute:   45
-        hour:     1
+        hour:     4
       - name:     zfs-pool-shares-scrub-daily
-        job:      "/usr/bin/zpool scrub zfs-pool-backup"
+        job:      "/usr/bin/zpool scrub zfs-pool-shares"
         minute:   45
         hour:     2
