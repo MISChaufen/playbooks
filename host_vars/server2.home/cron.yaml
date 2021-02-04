@@ -59,7 +59,7 @@ elao_cron_files:
         job:      "/home/mainuser/files/webmon/update.sh"
         minute:   "*"
         hour:     "*"
-  - file: zfs
+  - file: zfs-scrub
     user: root
     jobs:
       - name:     zfs-pool-backup-scrub-daily
@@ -70,3 +70,157 @@ elao_cron_files:
         job:      "/usr/bin/zpool scrub zfs-pool-shares"
         minute:   45
         hour:     2
+  - file: zfs-pool-shares-snapshot
+    user: root
+    jobs:
+      - name:     zfs-pool-shares-data-benni-backup-frequent
+        job:      "/home/deploy/Documents/zfs-auto-snapshot/src/zfs-auto-snapshot.sh --label=frequent --keep=12 -r zfs-pool-shares/data/benni"
+        minute:   "*/15"
+        hour:     "*"
+      - name:     zfs-pool-shares-data-benni-backup-hourly
+        job:      "/home/deploy/Documents/zfs-auto-snapshot/src/zfs-auto-snapshot.sh --label=hourly --keep=48 -r zfs-pool-shares/data/benni"
+        minute:   "10"
+        hour:     "*"
+      - name:     zfs-pool-shares-data-benni-backup-daily
+        job:      "/home/deploy/Documents/zfs-auto-snapshot/src/zfs-auto-snapshot.sh --label=daily --keep=21 -r zfs-pool-shares/data/benni"
+        minute:   "20"
+        hour:     "0"
+      - name:     zfs-pool-shares-data-benni-backup-weekly
+        job:      "/home/deploy/Documents/zfs-auto-snapshot/src/zfs-auto-snapshot.sh --label=weekly --keep=16 -r zfs-pool-shares/data/benni"
+        minute:   "20"
+        hour:     "1"
+        weekday:  "0"
+      - name:     zfs-pool-shares-data-benni-backup-monthly
+        job:      "/home/deploy/Documents/zfs-auto-snapshot/src/zfs-auto-snapshot.sh --label=monthly --keep=12 -r zfs-pool-shares/data/benni"
+        minute:   "20"
+        hour:     "2"
+        day:      "1"
+
+      - name:     zfs-pool-shares-data-anna-benni-backup-frequent
+        job:      "/home/deploy/Documents/zfs-auto-snapshot/src/zfs-auto-snapshot.sh --label=frequent --keep=12 -r zfs-pool-shares/data/anna_benni"
+        minute:   "*/15"
+        hour:     "*"
+      - name:     zfs-pool-shares-data-anna-benni-backup-hourly
+        job:      "/home/deploy/Documents/zfs-auto-snapshot/src/zfs-auto-snapshot.sh --label=hourly --keep=48 -r zfs-pool-shares/data/anna_benni"
+        minute:   "10"
+        hour:     "*"
+      - name:     zfs-pool-shares-data-anna-benni-backup-daily
+        job:      "/home/deploy/Documents/zfs-auto-snapshot/src/zfs-auto-snapshot.sh --label=daily --keep=21 -r zfs-pool-shares/data/anna_benni"
+        minute:   "20"
+        hour:     "0"
+      - name:     zfs-pool-shares-data-anna-benni-backup-weekly
+        job:      "/home/deploy/Documents/zfs-auto-snapshot/src/zfs-auto-snapshot.sh --label=weekly --keep=16 -r zfs-pool-shares/data/anna_benni"
+        minute:   "20"
+        hour:     "1"
+        weekday:  "0"
+      - name:     zfs-pool-shares-data-anna-benni-backup-monthly
+        job:      "/home/deploy/Documents/zfs-auto-snapshot/src/zfs-auto-snapshot.sh --label=monthly --keep=12 -r zfs-pool-shares/data/anna_benni"
+        minute:   "20"
+        hour:     "2"
+        day:      "1"
+
+      - name:     zfs-pool-shares-media-backup-frequent
+        job:      "/home/deploy/Documents/zfs-auto-snapshot/src/zfs-auto-snapshot.sh --label=frequent --keep=12 -r zfs-pool-shares/media"
+        minute:   "*/15"
+        hour:     "*"
+      - name:     zfs-pool-shares-media-backup-hourly
+        job:      "/home/deploy/Documents/zfs-auto-snapshot/src/zfs-auto-snapshot.sh --label=hourly --keep=48 -r zfs-pool-shares/media"
+        minute:   "10"
+        hour:     "*"
+      - name:     zfs-pool-shares-media-backup-daily
+        job:      "/home/deploy/Documents/zfs-auto-snapshot/src/zfs-auto-snapshot.sh --label=daily --keep=21 -r zfs-pool-shares/media"
+        minute:   "20"
+        hour:     "0"
+      - name:     zfs-pool-shares-media-backup-weekly
+        job:      "/home/deploy/Documents/zfs-auto-snapshot/src/zfs-auto-snapshot.sh --label=weekly --keep=16 -r zfs-pool-shares/media"
+        minute:   "20"
+        hour:     "1"
+        weekday:  "0"
+      - name:     zfs-pool-shares-media-backup-monthly
+        job:      "/home/deploy/Documents/zfs-auto-snapshot/src/zfs-auto-snapshot.sh --label=monthly --keep=12 -r zfs-pool-shares/media"
+        minute:   "20"
+        hour:     "2"
+        day:      "1"
+  - file: zfs-pool-backup-snapshot
+    user: root
+    jobs:
+      - name:     zfs-pool-backup-shares-data-benni-zar
+        job:      "/root/zar.sh zfs-pool-shares/data/benni zfs-pool-backup/shares/data/benni"
+        minute:   "*/30"
+        hour:     "*"
+      - name:     zfs-pool-backup-shares-data-anna-benni-zar
+        job:      "/root/zar.sh zfs-pool-shares/data/anna_benni zfs-pool-backup/shares/data/anna_benni"
+        minute:   "*/30"
+        hour:     "*"
+      - name:     zfs-pool-backup-shares-media-zar
+        job:      "/root/zar.sh zfs-pool-shares/media zfs-pool-backup/shares/media"
+        minute:   "*/30"
+        hour:     "*"
+      - name:     zfs-pool-backup-shares-data-benni-backup-frequent
+        job:      "/home/deploy/Documents/zfs-auto-snapshot/src/zfs-auto-snapshot.sh --label=frequent --keep=12 -r zfs-pool-backup/shares/data/benni --destroy-only "
+        minute:   "*/15"
+        hour:     "*"
+      - name:     zfs-pool-backup-shares-data-benni-backup-hourly
+        job:      "/home/deploy/Documents/zfs-auto-snapshot/src/zfs-auto-snapshot.sh --label=hourly --keep=48 -r zfs-pool-backup/shares/data/benni --destroy-only "
+        minute:   "10"
+        hour:     "*"
+      - name:     zfs-pool-backup-shares-data-benni-backup-daily
+        job:      "/home/deploy/Documents/zfs-auto-snapshot/src/zfs-auto-snapshot.sh --label=daily --keep=21 -r zfs-pool-backup/shares/data/benni --destroy-only "
+        minute:   "20"
+        hour:     "0"
+      - name:     zfs-pool-backup-shares-data-benni-backup-weekly
+        job:      "/home/deploy/Documents/zfs-auto-snapshot/src/zfs-auto-snapshot.sh --label=weekly --keep=16 -r zfs-pool-backup/shares/data/benni --destroy-only "
+        minute:   "20"
+        hour:     "1"
+        weekday:  "0"
+      - name:     zfs-pool-backup-shares-data-benni-backup-monthly
+        job:      "/home/deploy/Documents/zfs-auto-snapshot/src/zfs-auto-snapshot.sh --label=monthly --keep=12 -r zfs-pool-backup/shares/data/benni --destroy-only "
+        minute:   "20"
+        hour:     "2"
+        day:      "1"
+
+      - name:     zfs-pool-backup-shares-data-anna-benni-backup-frequent
+        job:      "/home/deploy/Documents/zfs-auto-snapshot/src/zfs-auto-snapshot.sh --label=frequent --keep=12 -r zfs-pool-backup/shares/data/anna_benni --destroy-only "
+        minute:   "*/15"
+        hour:     "*"
+      - name:     zfs-pool-backup-shares-data-anna-benni-backup-hourly
+        job:      "/home/deploy/Documents/zfs-auto-snapshot/src/zfs-auto-snapshot.sh --label=hourly --keep=48 -r zfs-pool-backup/shares/data/anna_benni --destroy-only "
+        minute:   "10"
+        hour:     "*"
+      - name:     zfs-pool-backup-shares-data-anna-benni-backup-daily
+        job:      "/home/deploy/Documents/zfs-auto-snapshot/src/zfs-auto-snapshot.sh --label=daily --keep=21 -r zfs-pool-backup/shares/data/anna_benni --destroy-only "
+        minute:   "20"
+        hour:     "0"
+      - name:     zfs-pool-backup-shares-data-anna-benni-backup-weekly
+        job:      "/home/deploy/Documents/zfs-auto-snapshot/src/zfs-auto-snapshot.sh --label=weekly --keep=16 -r zfs-pool-backup/shares/data/anna_benni --destroy-only "
+        minute:   "20"
+        hour:     "1"
+        weekday:  "0"
+      - name:     zfs-pool-backup-shares-data-anna-benni-backup-monthly
+        job:      "/home/deploy/Documents/zfs-auto-snapshot/src/zfs-auto-snapshot.sh --label=monthly --keep=12 -r zfs-pool-backup/shares/data/anna_benni --destroy-only "
+        minute:   "20"
+        hour:     "2"
+        day:      "1"
+
+      - name:     zfs-pool-backup-shares-media-backup-frequent
+        job:      "/home/deploy/Documents/zfs-auto-snapshot/src/zfs-auto-snapshot.sh --label=frequent --keep=12 -r zfs-pool-backup/shares/media --destroy-only "
+        minute:   "*/15"
+        hour:     "*"
+      - name:     zfs-pool-backup-shares-media-backup-hourly
+        job:      "/home/deploy/Documents/zfs-auto-snapshot/src/zfs-auto-snapshot.sh --label=hourly --keep=48 -r zfs-pool-backup/shares/media --destroy-only "
+        minute:   "10"
+        hour:     "*"
+      - name:     zfs-pool-backup-shares-media-backup-daily
+        job:      "/home/deploy/Documents/zfs-auto-snapshot/src/zfs-auto-snapshot.sh --label=daily --keep=21 -r zfs-pool-backup/shares/media --destroy-only "
+        minute:   "20"
+        hour:     "0"
+      - name:     zfs-pool-backup-shares-media-backup-weekly
+        job:      "/home/deploy/Documents/zfs-auto-snapshot/src/zfs-auto-snapshot.sh --label=weekly --keep=16 -r zfs-pool-backup/shares/media --destroy-only "
+        minute:   "20"
+        hour:     "1"
+        weekday:  "0"
+      - name:     zfs-pool-backup-shares-media-backup-monthly
+        job:      "/home/deploy/Documents/zfs-auto-snapshot/src/zfs-auto-snapshot.sh --label=monthly --keep=12 -r zfs-pool-backup/shares/media --destroy-only "
+        minute:   "20"
+        hour:     "2"
+        day:      "1"
