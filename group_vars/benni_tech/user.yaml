@@ -14,6 +14,8 @@ management_user_list_group:
     uid: 2000
   - name: mainuser
     uid: 2001
+  - name: sshduser
+    uid: 2002
 
 management_user_settings:
   - name: root
@@ -32,6 +34,7 @@ management_user_settings:
     groups:
       - deploy
       - sudo
+      - sshduser
     shell: "/usr/bin/zsh"
     authorized_keys:
       - key: "{{ ssh_pub_key_hetzner }}"

@@ -2,6 +2,16 @@
 # This is the top-level playbook that defines our entire infrastructure.
 
 
+- hosts: server2.home
+  user: deploy
+  become: True
+  gather_facts: True
+
+  roles:
+    - role: ansible-role-samba
+      samba_services: "{{ arch_samba_services }}"
+
+
 - hosts: all
   user: deploy
   become: True
