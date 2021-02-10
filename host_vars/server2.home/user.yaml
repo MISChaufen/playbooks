@@ -51,6 +51,9 @@ management_user_settings:
     uid: 2001
     groups:
       - mainuser
+      - sambauser
+      - http
+      - docker
     shell: "/usr/bin/zsh"
   - name: deploy
     comment: Deployment User
