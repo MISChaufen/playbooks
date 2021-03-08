@@ -14,7 +14,7 @@ samba_shares:
     guest_ok: no
     valid_users: "@sambauser"
     write_list: anna benni
-    group: http
+    group: cloud
   - name: Benni
     comment: 'Data share for Benni'
     path: /samba/benni
@@ -22,7 +22,7 @@ samba_shares:
     guest_ok: no
     valid_users: "@sambauser"
     write_list: benni
-    group: http
+    group: cloud
   - name: Media
     comment: 'Media share'
     path: /samba/media
@@ -30,11 +30,11 @@ samba_shares:
     guest_ok: yes
     valid_users: "@sambauser"
     write_list: anna benni
-    group: http
+    group: cloud
   - name: Backup
-    comment: 'Media share'
+    comment: 'Backup share'
     path: /zfs-pool-backup
     read_only: yes
     guest_ok: no
     valid_users: "@sambauser"
-    group: http
+    group: cloud

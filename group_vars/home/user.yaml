@@ -11,6 +11,8 @@ user_shell: "/usr/bin/zsh"
 ssh_pub_key_home: "{{ lookup('file', '~/.ssh/id_ed25519_home.pub') }}"
 
 management_user_list_group:
+  - name: cloud
+    uid: 82
   - name: benni
     uid: 1000
   - name: deploy
@@ -35,6 +37,8 @@ management_user_settings:
       - power
       - lp
       - wheel
+      - cloud
+      - uucp
     shell: "/usr/bin/zsh"
   - name: mainuser
     uid: 2001

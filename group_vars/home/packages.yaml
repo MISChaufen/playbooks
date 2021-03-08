@@ -54,3 +54,6 @@ package_install:
     - unrar
     - docker
     - smbclient
+    - powerline
+    - powerline-vim
+    - dnsutils

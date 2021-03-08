@@ -59,6 +59,22 @@ elao_cron_files:
         job:      "/home/mainuser/files/webmon/update.sh"
         minute:   "*"
         hour:     "*"
+  - file: nextcloud
+    user: mainuser
+    jobs:
+      - name:     nextcloud-full-scan
+        job:      "docker exec --user=www-data -it nextcloud_app_1 /usr/local/bin/php /var/www/html/console.php files:scan --all"
+        minute:   "20"
+        hour:     "3"
+        weekday:  "1"
+      - name:     nextcloud-can
+        job:      "docker exec --user=www-data -it nextcloud_app_1 /usr/local/bin/php /var/www/html/console.php files:scan --unscanned --all"
+        minute:   "20"
+        hour:     "5"
+      - name:     nextcloud-cron-run
+        job:      "docker exec --user=www-data -it nextcloud_app_1 /usr/local/bin/php /var/www/html/cron.php"
+        minute:   "20"
+        hour:     "*/2"
   - file: zfs-scrub
     user: root
     jobs:
@@ -141,6 +157,30 @@ elao_cron_files:
         minute:   "20"
         hour:     "2"
         day:      "1"
+
+      - name:     zfs-pool-shares-nextcloud-backup-frequent
+        job:      "/home/deploy/files/zfs-auto-snapshot/src/zfs-auto-snapshot.sh --label=frequent --keep=12 -r zfs-pool-shares/nextcloud"
+        minute:   "*/15"
+        hour:     "*"
+      - name:     zfs-pool-shares-nexcloud-backup-hourly
+        job:      "/home/deploy/files/zfs-auto-snapshot/src/zfs-auto-snapshot.sh --label=hourly --keep=48 -r zfs-pool-shares/nextcloud"
+        minute:   "10"
+        hour:     "*"
+      - name:     zfs-pool-shares-nextcloud-backup-daily
+        job:      "/home/deploy/files/zfs-auto-snapshot/src/zfs-auto-snapshot.sh --label=daily --keep=21 -r zfs-pool-shares/nextcloud"
+        minute:   "20"
+        hour:     "0"
+      - name:     zfs-pool-shares-nextcloud-backup-weekly
+        job:      "/home/deploy/files/zfs-auto-snapshot/src/zfs-auto-snapshot.sh --label=weekly --keep=16 -r zfs-pool-shares/nextcloud"
+        minute:   "20"
+        hour:     "1"
+        weekday:  "0"
+      - name:     zfs-pool-shares-nextcloud-backup-monthly
+        job:      "/home/deploy/files/zfs-auto-snapshot/src/zfs-auto-snapshot.sh --label=monthly --keep=12 -r zfs-pool-shares/nextcloud"
+        minute:   "20"
+        hour:     "2"
+        day:      "1"
+
   - file: zfs-pool-backup-snapshot
     user: root
     jobs:
@@ -158,6 +198,10 @@ elao_cron_files:
         hour:     "*"
       - name:     zfs-pool-backup-shares-media-zxfer
         job:      "/home/deploy/files/zxfer/zxfer -dFkPv -g 375 -N  zfs-pool-shares/media zfs-pool-backup/shares"
+        minute:   "*/30"
+        hour:     "*"
+      - name:     zfs-pool-backup-shares-nextcloud-zxfer
+        job:      "/home/deploy/files/zxfer/zxfer -dFkPv -g 375 -N  zfs-pool-shares/nextcloud zfs-pool-backup/shares"
         minute:   "*/30"
         hour:     "*"
       - name:     zfs-pool-backup-shares-data-benni-backup-frequent
@@ -225,6 +269,29 @@ elao_cron_files:
         weekday:  "0"
       - name:     zfs-pool-backup-shares-media-backup-monthly
         job:      "/home/deploy/files/zfs-auto-snapshot/src/zfs-auto-snapshot.sh --label=monthly --keep=12 -r zfs-pool-backup/shares/media --destroy-only "
+        minute:   "20"
+        hour:     "2"
+        day:      "1"
+
+      - name:     zfs-pool-backup-shares-nextcloud-backup-frequent
+        job:      "/home/deploy/files/zfs-auto-snapshot/src/zfs-auto-snapshot.sh --label=frequent --keep=12 -r zfs-pool-backup/shares/nextcloud --destroy-only "
+        minute:   "*/15"
+        hour:     "*"
+      - name:     zfs-pool-backup-shares-nextcloud-backup-hourly
+        job:      "/home/deploy/files/zfs-auto-snapshot/src/zfs-auto-snapshot.sh --label=hourly --keep=48 -r zfs-pool-backup/shares/nextcloud --destroy-only "
+        minute:   "10"
+        hour:     "*"
+      - name:     zfs-pool-backup-shares-nextcloud-backup-daily
+        job:      "/home/deploy/files/zfs-auto-snapshot/src/zfs-auto-snapshot.sh --label=daily --keep=21 -r zfs-pool-backup/shares/nextcloud --destroy-only "
+        minute:   "20"
+        hour:     "0"
+      - name:     zfs-pool-backup-shares-nextcloud-backup-weekly
+        job:      "/home/deploy/files/zfs-auto-snapshot/src/zfs-auto-snapshot.sh --label=weekly --keep=16 -r zfs-pool-backup/shares/nextcloud --destroy-only "
+        minute:   "20"
+        hour:     "1"
+        weekday:  "0"
+      - name:     zfs-pool-backup-shares-nextcloud-backup-monthly
+        job:      "/home/deploy/files/zfs-auto-snapshot/src/zfs-auto-snapshot.sh --label=monthly --keep=12 -r zfs-pool-backup/shares/nextcloud --destroy-only "
         minute:   "20"
         hour:     "2"
         day:      "1"

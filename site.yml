@@ -34,6 +34,7 @@
       cp_bin: "{{ backup.cp_bin }}"
       rm_bin: "{{ backup.rm_bin }}"
     - role: ansible-role-cron
+      cron_daemon: "{{ cron_daemon }}"
     - ansible-role-systemd-service
 
 
