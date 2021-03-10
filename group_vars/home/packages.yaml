@@ -57,3 +57,4 @@ package_install:
     - powerline
     - powerline-vim
     - dnsutils
+    - openbsd-netcat
