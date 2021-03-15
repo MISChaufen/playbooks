@@ -299,16 +299,16 @@ elao_cron_files:
       - name:     zfs-pool-backup-computer-cloudkey-backup-daily
         job:      "/home/deploy/files/zfs-auto-snapshot/src/zfs-auto-snapshot.sh --label=daily --keep=31 -r zfs-pool-backup/computer/cloudkey.home"
         minute:   "40"
-        hour:     "*"
+        hour:     "0"
       - name:     zfs-pool-backup-computer-server1-backup-daily
         job:      "/home/deploy/files/zfs-auto-snapshot/src/zfs-auto-snapshot.sh --label=daily --keep=31 -r zfs-pool-backup/computer/server1.home"
         minute:   "40"
-        hour:     "*"
+        hour:     "0"
       - name:     zfs-pool-backup-computer-server2-backup-daily
         job:      "/home/deploy/files/zfs-auto-snapshot/src/zfs-auto-snapshot.sh --label=daily --keep=31 -r zfs-pool-backup/computer/server2.home"
         minute:   "40"
-        hour:     "*"
+        hour:     "0"
       - name:     zfs-pool-backup-computer-t540p-backup-daily
         job:      "/home/deploy/files/zfs-auto-snapshot/src/zfs-auto-snapshot.sh --label=daily --keep=31 -r zfs-pool-backup/computer/t540.home"
         minute:   "40"
-        hour:     "*"
+        hour:     "0"
