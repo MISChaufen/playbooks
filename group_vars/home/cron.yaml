@@ -16,6 +16,7 @@ elao_cron_files:
         job:      "rsnapshot -c /etc/rsnapshot.conf alpha"
         minute:   0
         hour:     "*"
+        hour:     "*/2"
       - name:     rsnapshot-beta
         job:      "rsnapshot -c /etc/rsnapshot.conf beta"
         minute:   45

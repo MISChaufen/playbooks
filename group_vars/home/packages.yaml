@@ -34,7 +34,6 @@ package_install:
     - tree
     - tmux
     - unzip
-    - vim
     - wget
     - whois
     - xdotool
@@ -58,3 +57,4 @@ package_install:
     - powerline-vim
     - dnsutils
     - openbsd-netcat
+#    - vim
